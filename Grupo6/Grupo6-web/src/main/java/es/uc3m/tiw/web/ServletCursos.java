@@ -1,0 +1,146 @@
+package es.uc3m.tiw.web;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+/**
+ * Servlet implementation class Cursos
+ */
+@WebServlet("/ServletCursos")
+@MultipartConfig 
+public class ServletCursos extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    public static ArrayList <Curso> Listacursos = new ArrayList<Curso>();   
+    
+    public static int contadorId=0;
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletCursos() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	String accion=(String) request.getParameter("action");
+	String id=(String) request.getParameter("id");
+	Integer idInt=0;
+	if(id!=null){
+	idInt= Integer.valueOf(id);
+	}
+		if(accion!=null && accion.equals("delete")){
+			Listacursos.remove(idInt.intValue());	
+		}
+		request.setAttribute("Listacursos", Listacursos);
+		this.getServletConfig().getServletContext().getRequestDispatcher("/Catalogo.jsp").forward(request, response);
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String titulo =request.getParameter("titulo");
+		String descripcion =request.getParameter("descripcion");
+		String dificultad =request.getParameter("dificultad");
+		int numeroh =Integer.valueOf(request.getParameter("numeroh"));
+		double precio= Double.valueOf(request.getParameter("precio"));
+		Part filePart = request.getPart("imagenuri");
+		String uri= guardarImagen(filePart);
+		
+		//crea un nuevo curso con los atributos 
+		Curso curso= new Curso();
+		curso.setId(contadorId);
+		contadorId++;
+		curso.setDescripcion(descripcion);
+		curso.setDificultad(dificultad);
+		curso.setImagenuri(uri);
+		curso.setNumeroh(numeroh);
+		curso.setPrecio(precio);
+		curso.setTitulo(titulo);
+		//curso.setImagenuri("/home/tiw/fotos/libro.png");
+		
+		Listacursos.add(curso);
+		
+		request.setAttribute("titulo", titulo);
+		request.setAttribute("descripcion", descripcion);
+		request.setAttribute("precio", precio);
+		request.setAttribute("numeroh", numeroh);
+		request.setAttribute("curso", curso);
+		
+		
+		request.setAttribute("Listacursos", Listacursos);
+		
+		//pinta lo anterior en el jsp catalogo
+		getServletContext().getRequestDispatcher("/Catalogo.jsp").forward(request, response);
+		
+		
+		
+	}
+	
+	public static String guardarImagen(Part filePart){
+		
+		Date date = new Date();
+		String archivoNombre ="";
+		
+		if (filePart!=null && filePart.getSize()!= 0){
+			archivoNombre= "imagen" + date.getTime();
+		//donde se guardan las imagenes
+		//lo va leyendo del Part y lo guarda en un lugar del disco
+		try {
+			FileOutputStream outputStream = new FileOutputStream("/home/tiw/fotos/" + archivoNombre);
+			
+			int read = 0;
+			InputStream inputStream =filePart.getInputStream();
+			byte[] bytes = new byte[1024];
+
+			while ((read = inputStream.read(bytes)) != -1) {
+				outputStream.write(bytes, 0, read);
+			}
+			
+		} catch (FileNotFoundException e) {
+		
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}
+		
+		return archivoNombre;
+	}
+	
+
+		
+	public static Curso BuscarCurso(int id){
+		int IdCurso2=0;
+		Curso Curso2=null;
+		for (int i = 0; i < ServletCursos.Listacursos.size(); i++) {
+			Curso2= ServletCursos.Listacursos.get(i);
+			IdCurso2=Curso2.getId();
+			if(IdCurso2==id){
+				i=ServletCursos.Listacursos.size();
+			}
+		}
+	return Curso2;	
+	}
+}
