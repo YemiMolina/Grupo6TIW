@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ 
+    <%@ page import="es.uc3m.tiw.web.ServletSession"%>
+    <%@ page import="javax.servlet.ServletException"%>
+    <%@ page import="javax.servlet.annotation.WebServlet"%>
+    <%@ page import="javax.servlet.http.HttpServlet"%>
+    <%@ page import="javax.servlet.http.HttpServletRequest"%>
+    <%@ page import="javax.servlet.http.HttpServletResponse"%>
+    <%@ page import="javax.servlet.http.HttpSession"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
    
 <html>
@@ -33,13 +41,18 @@
 
 <body>
   <!--Header-->
-	<%@include file="HeaderLog.jsp"%>
-
+  	<%if (session.getAttribute("activo") != null) { %>
+ 	<%@include file="HeaderLog.jsp"%>
+	<%}else{%>
+	<%@include file="Header.jsp"%>
+	<% } %> 
+	
    <div class="row">
     <div class="col-xs-12 col-sm-6">
         <div id="cursos">
       <a href="#">
         <img src="./images/cursos.png" alt="imagen busqueda" style="width:100%">
+        <p>SESSSSSS: <%= (String) session.getAttribute("activo") %> </p>
       </a>
       <!-- <figcaption id="figcaption">Encuentra un curso a tu medida, empieza a buscar</figcaption> -->
     </div>

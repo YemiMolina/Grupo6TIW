@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="es.uc3m.tiw.web.Usuario"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -31,7 +32,9 @@
   <META HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8"/>
 
   <!--Header-->
-
+<%
+		Usuario log = (Usuario)request.getAttribute("usuario");		
+%>
 
   <body id="body" onload="" >
 
@@ -45,8 +48,8 @@
         </div>
         <div class="col-lg-4 col-md-4 col-sm-5 hidden-xs" style="float=right">
            <div id="registroUsuario">
-            <form name="log"  method="post" onsubmit="Logout" action="">
-              <div><p id="usuario"> <span style="color:white">Logged as: <%=request.getAttribute("usuario") %></span></p><p id="usuarioActual" ></p>
+            <form name="log"  method="get" onsubmit="" action="ServletLongin?accion=salir">
+              <div><p id="usuario"> <span style="color:white">Logged as: </span></p><p id="usuarioActual" ></p>
               <div id="logOut">
                 <input id="botonCerrar" type="submit" value="Cerrar Sesión" onclick="">
               </div>
@@ -75,10 +78,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="ServletLogin?accion=Index">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Perfil</a></li>
         <li><a href="#">Cursos</a></li>
-        <li><a href="http://localhost:8080/Grupo6-web/ServletListaUsuarios">Personas</a></li>
+        <li><a href="http://localhost:8080/Grupo6-web/ListaUsuarios.jsp">Personas</a></li>
       </ul>
      <form class="navbar-form navbar-left" role="search">
         <div class="form-group">

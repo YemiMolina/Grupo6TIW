@@ -2,7 +2,7 @@ package es.uc3m.tiw.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+import es.uc3m.tiw.web.ServletSession;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,11 +25,14 @@ public class ServletLogin extends HttpServlet {
 		Usuario alumno1 = new Usuario("borjita", "pass1", "Borja", "Perez", 21,1,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265);
 		Usuario alumno2 = new Usuario("carlos", "pass1", "Borja", "Perez", 21,1,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265);
 		Usuario profesor1 = new Usuario("profe", "pass1", "Borja", "Perez", 21,2,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265);
+		Usuario admin = new Usuario("admin", "admin", "Administrador", "The boss", 21,2,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265);
 		
 		listaUsuarios = new ArrayList<Usuario>();
 		listaUsuarios.add(alumno1);
 		listaUsuarios.add(alumno2);
-		listaUsuarios.add(profesor1);	
+		listaUsuarios.add(profesor1);
+		listaUsuarios.add(admin);
+		
 	}
 	
        
@@ -46,11 +49,17 @@ public class ServletLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String salir = request.getParameter("accion");
+		String accion = request.getParameter("accion");
+		switch (accion) {
+		case "Index":
+			this.getServletConfig().getServletContext().getRequestDispatcher("/Index.jsp").forward(request, response);
+		break;
+		}
+		/*String salir = request.getParameter("accion");
 		if (salir != null && !salir.equals("")){
 			request.getSession().invalidate();
 		}
-		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+		this.getServletContext().getRequestDispatcher("/Index.jsp").forward(request,response);*/
 	}
 
 	/**
@@ -59,18 +68,21 @@ public class ServletLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String user = request.getParameter("usuario");
-		String password = request.getParameter("clave");
+		String user = request.getParameter("user");
+		String password = request.getParameter("pasw");
 		String mensaje ;
-		String pagina = "/index.jsp";
+		String pagina = "/Index.jsp";
 		
-		HttpSession sesion = request.getSession(true);
+		HttpSession session = request.getSession();
 		Usuario u = comprobarUsuario (user, password);
 		if (u != null){
+			
 			pagina = "/Perfil.jsp";
 			request.setAttribute("usuarios", listaUsuarios);
 			request.setAttribute("usuario", u);
 			request.setAttribute("acceso", "ok");
+			session.setAttribute("activo", u.getUsuario());
+			
 		}else{
 			mensaje = "Usuario o contraseña incorrectos";
 			request.setAttribute("mensaje", mensaje);

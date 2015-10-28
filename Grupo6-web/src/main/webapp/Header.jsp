@@ -39,20 +39,20 @@
       <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
           <figure>
-            <a href="../src/index.html"><img id="imagenTitulo" src="./images/logo.png" alt="Logo tiw"></a>
+            <a href="./Index.html"><img id="imagenTitulo" src="./images/logo.png" alt="Logo tiw"></a>
           </figure>
           <h1 id="titulo">Dokulearning</h1>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-5 hidden-xs" style="float=right">
           <div id="registroUsuario">
-            <form name="formularioUsuario"  method="post" onsubmit="return checkUsuario()" action="../src/perfil.html">
+            <form name="formularioUsuario"  method="post" action="ServletLogin">
               <div><p id="usuario"> <span style="color:white">Usuario </span></p> <input class="cuadro"  id="cuadro" type="text" name="user"></input></div>
               <div style="clear: both; float: left"><p id="pas"><span style="color:white"> Contraseña </span></p> <input class="cuadro" id="cuadro"  type="password" name="pasw"></input></div>
+            	<div id="registroUsuario">
+              		<input id="botonSubmit" type="submit" value="Iniciar Sesión">
+             		<a class="enlaceUsuario" href="./RegistroUsuario.jsp" style="font-size:20px;" >¿Aún no te has registrado?</a>
+            	</div>
             </form>
-            <div id="registroUsuario">
-              <input id="botonSubmit" type="submit" value="Iniciar Sesión">
-              <a class="enlaceUsuario" href="../src/formUsuarioRegistro.html" style="font-size:20px;" >¿Aún no te has registrado?</a>
-            </div>
           </div>
         </div>
       </div>

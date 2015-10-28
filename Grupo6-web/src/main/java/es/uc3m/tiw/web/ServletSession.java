@@ -14,10 +14,12 @@ import javax.servlet.http.HttpSessionListener;
  */
 @WebListener
 public class ServletSession implements HttpSessionListener, HttpSessionAttributeListener {
-	Logger log = Logger.getLogger("es.uc3m.tiw.web.listeners.SessionListener");
+	Logger log = Logger.getLogger("es.uc3m.tiw.web.ServletSesion");
     /**
      * Default constructor. 
      */
+	/*contador*/
+	int cont = 0;
     public ServletSession() {
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +30,7 @@ public class ServletSession implements HttpSessionListener, HttpSessionAttribute
     public void sessionCreated(HttpSessionEvent arg0)  { 
     	
          log.info("Sessión creada");
-         
+         cont++;
     }
 
 	/**
@@ -37,8 +39,16 @@ public class ServletSession implements HttpSessionListener, HttpSessionAttribute
     public void sessionDestroyed(HttpSessionEvent arg0)  { 
 
     	log.info("Sesión destruida");
-         
+        cont--;
     }
+
+	public int getCont() {
+		return cont;
+	}
+
+	public void setCont(int cont) {
+		this.cont = cont;
+	}
 
 	@Override
 	public void attributeAdded(HttpSessionBindingEvent arg0) {
