@@ -35,7 +35,7 @@
 			<input type="file" name="material">
 		</p> 
 
-			<input type="submit" value="Dar de alta" />
+			<input type="submit" value="Dar de alta la leccion" />
 			<ul>
 				<%
 					if (request.getAttribute("Listalecciones") != null) {
@@ -44,7 +44,7 @@
 						for (Leccion leccion : ListaLecciones) {
 				%>
 				<li><%=leccion.getDescripcion()%> 
-				<a href="Imagenes?foto=<%=leccion.getMaterial() %>">Material</a><br><br>
+				<a href="ServletImagenes?foto=<%=leccion.getMaterial() %>">Material de la leccion</a><br><br>
 				</li>
 
 				
@@ -57,11 +57,11 @@
 					}
 				%>
 				<a href="CatalogoLecciones.jsp?id=<%=request.getParameter("id")%>">
-					Añadir Leccion </a>
+					Añadir otra Leccion al curso </a>
 
 			</ul>
 
-	
+			<a href="ServletCursos" > Volver a los Cursos</a><br>	
 	</form>
 
 

@@ -10,7 +10,20 @@ public class Curso {
 	private double precio;
 	private String imagenuri;
 	private int id;
+	private double descuento;
 	
+	
+	public double getPrecioFinal(){
+		return precio-descuento;
+	}
+	
+	
+	public double getDescuento() {
+		return descuento;
+	}
+	public void setDescuento(double descuento) {
+		this.descuento = descuento;
+	}
 	public int getId() {
 		return id;
 	}

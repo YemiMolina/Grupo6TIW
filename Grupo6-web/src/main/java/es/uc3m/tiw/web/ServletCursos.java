@@ -68,6 +68,15 @@ public class ServletCursos extends HttpServlet {
 		Part filePart = request.getPart("imagenuri");
 		String uri= guardarImagen(filePart);
 		
+		String descuento = request.getParameter("descuento");
+		Double tipoDescuento;
+		if(descuento.equals("fijo")){
+			tipoDescuento=10.0;
+		}else{
+			tipoDescuento=precio*0.10;
+		}
+		
+		
 		//crea un nuevo curso con los atributos 
 		Curso curso= new Curso();
 		curso.setId(contadorId);
@@ -78,15 +87,13 @@ public class ServletCursos extends HttpServlet {
 		curso.setNumeroh(numeroh);
 		curso.setPrecio(precio);
 		curso.setTitulo(titulo);
-		//curso.setImagenuri("/home/tiw/fotos/libro.png");
+		curso.setDescuento(tipoDescuento);
+		
 		
 		Listacursos.add(curso);
 		
-		request.setAttribute("titulo", titulo);
-		request.setAttribute("descripcion", descripcion);
-		request.setAttribute("precio", precio);
-		request.setAttribute("numeroh", numeroh);
 		request.setAttribute("curso", curso);
+		
 		
 		
 		request.setAttribute("Listacursos", Listacursos);
@@ -129,8 +136,6 @@ public class ServletCursos extends HttpServlet {
 		return archivoNombre;
 	}
 	
-
-		
 	public static Curso BuscarCurso(int id){
 		int IdCurso2=0;
 		Curso Curso2=null;

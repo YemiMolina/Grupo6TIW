@@ -37,7 +37,7 @@
 
 <div id="formalta" >
 <p> <strong>Formulario para dar de alta los cursos a la plataforma Dokulearning</strong></p>
-<form action="cursos" enctype="multipart/form-data" method="post">
+<form action="ServletCursos" enctype="multipart/form-data" method="post">
     <hr>
     <fieldset>
     <legend> Alta de curso 
@@ -66,6 +66,15 @@
     <br>
     
     <p> -Precio: <input type="number" name="precio"></p> <br>
+    
+    <p> -Cupon Descuento (si se desea): 
+     <br>
+        <input type="radio" name="descuento" value="fijo"  /> 10 euros
+        <br>
+        <input type="radio" name="descuento" value="variable"  /> 10% de descuento
+        <br>
+        <input type="radio" name="descuento" value="ninguno"  /> Ningun descuento
+        <br>
     
 	
 	<p> Subir Imagen</p>

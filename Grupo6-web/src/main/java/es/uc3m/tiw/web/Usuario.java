@@ -1,5 +1,7 @@
 package es.uc3m.tiw.web;
 
+import java.util.ArrayList;
+
 //import java.util.ArrayList;
 
 //import java.io.Serializable;
@@ -20,7 +22,35 @@ public class Usuario{
 	private long numeroTarjeta;
 	private String expiracion;
 	private int codigoCVC;
-	//public static ArrayList<Cursos> UsuarioCurso = new ArrayList<Cursos>(); 
+	public String imagenuri;
+	
+	
+	
+	public String getImagenuri() {
+		return imagenuri;
+	}
+
+
+
+	public void setImagenuri(String imagenuri) {
+		this.imagenuri = imagenuri;
+	}
+
+
+
+	public static ArrayList<Curso> getUsuarioCurso() {
+		return UsuarioCurso;
+	}
+
+
+
+	public static void setUsuarioCurso(ArrayList<Curso> usuarioCurso) {
+		UsuarioCurso = usuarioCurso;
+	}
+
+
+
+	public static ArrayList<Curso> UsuarioCurso = new ArrayList<Curso>(); 
 	
 	
 	public Usuario() {

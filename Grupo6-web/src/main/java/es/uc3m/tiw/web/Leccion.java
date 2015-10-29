@@ -40,20 +40,3 @@ public class Leccion {
 
 }
 
-/*
-
-
-public class HashtableLecciones {
-
-public static void main(String args[]) {
-
-
-Hashtable lecciones = new Hashtable();
-
-lecciones.put("Google", "United States");
-lecciones.put("Nokia", "Finland");
-lecciones.put("Sony", "Japan");
-
-lecciones.get("Google");
-}}
-*/

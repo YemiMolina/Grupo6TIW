@@ -1,13 +1,18 @@
 package es.uc3m.tiw.web;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 //import javax.servlet.http.HttpSession;
 
@@ -112,6 +117,48 @@ public class ServletRegistroUsuario extends HttpServlet {
 		
 		getServletContext().getRequestDispatcher("/Perfil.jsp").forward(request, response);
 		
+	}
+	
+public static Usuario UsuarioActual(){
+		
+		Usuario Pepe= new Usuario();
+		Pepe.setNombre("Pepe");
+		Pepe.setApellidos("Fernandez");
+		
+		
+		return Pepe;
+	}
+
+	
+public static String guardarImagen(Part filePart){
+		
+		Date date = new Date();
+		String archivoNombre ="";
+		
+		if (filePart!=null && filePart.getSize()!= 0){
+			archivoNombre= "imagen" + date.getTime();
+		//donde se guardan las imagenes
+		//lo va leyendo del Part y lo guarda en un lugar del disco
+		try {
+			FileOutputStream outputStream = new FileOutputStream("/home/tiw/fotos/" + archivoNombre);
+			
+			int read = 0;
+			InputStream inputStream =filePart.getInputStream();
+			byte[] bytes = new byte[1024];
+
+			while ((read = inputStream.read(bytes)) != -1) {
+				outputStream.write(bytes, 0, read);
+			}
+			
+		} catch (FileNotFoundException e) {
+		
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}
+		
+		return archivoNombre;
 	}
 
 }

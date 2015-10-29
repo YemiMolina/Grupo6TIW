@@ -24,14 +24,20 @@
 		%>
 		<li><%=curso.getTitulo() %> <br>
 		<%=curso.getDescripcion() %> <br>
-		<%=curso.getPrecio()%> 
-		
+		El precio inicial es:<%=curso.getPrecio()%><br>
+		El precio final es: <%=curso.getPrecioFinal()%> <br>
 		<br><br>
 
-		 <img src="Imagenes?foto=<%=curso.getImagenuri()%>"> <br><br>
-		 <a href="ServletLecciones?id=<%=curso.getId()%>" > Ver sus Lecciones </a></li>
+		 <img src="ServletImagenes?foto=<%=curso.getImagenuri()%>"> <br><br>
+		 
+		
+		 
+		 <a href="ServletLecciones?id=<%=curso.getId()%>" > Ver sus Lecciones </a></li><br>
 		  <a href="CatalogoLecciones.jsp?id=<%=curso.getId()%>" > Añadir Leccion </a></li> <br>
-		 <a href="cursos?action=delete&id=<%=contador%>" >Eliminar curso </a></li>
+		  <a href="Matriculacion.jsp?id=<%=curso.getId()%>&precioFinal=<%=curso.getPrecioFinal()%>" > Matricularse en este curso </a></li> <br>
+		  <a href="ServletCursos?action=modificar&id=<%=curso.getId()%>" > Modificar Curso </a></li><br>
+		 <a href="ServletCursos?action=delete&id=<%=contador%>" >Eliminar curso </a></li>
+		
 		
 		<%contador++; %>
 		<%
@@ -45,6 +51,6 @@
 	
 
 		<br>
-<a href="FormularioAlta.html" >Dar de alta otro curso </a>		
+<a href="FormularioAlta.jsp" >Dar de alta otro curso </a>		
 </body>
 </html>

@@ -43,11 +43,10 @@ public class ServletImagenes extends HttpServlet {
 	    	   
 	    	   file=new File("/home/tiw/fotos/libro.png");
 	       }else{ 
-	    	   
-	    	   
+
 	    	   file=new File("/home/tiw/fotos/"+ foto);
 	       }
-	       Path path= Paths.get("/home/tiw/fotos/"+foto);
+	       Path path= Paths.get("/home/tiw/fotos/"+ foto);
 	       response.setContentType(Files.probeContentType(path));
 	       response.setContentLength((int)file.length());
 	    
@@ -75,3 +74,4 @@ public class ServletImagenes extends HttpServlet {
 	}
 
 }
+

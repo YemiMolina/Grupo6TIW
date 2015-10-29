@@ -22,6 +22,42 @@
 				<role>Developer</role>
 			</roles>
 		</developer>
+		<developer>
+			<name>Alejandro Ortega</name>
+			<email>100276346@alumnos.uc3m.es</email>
+			<organization>TIW</organization>
+			<organizationUrl>http://www.dei.inf.uc3m.es</organizationUrl>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Rocio Mani</name>
+			<email>100284398@alumnos.uc3m.es</email>
+			<organization>TIW</organization>
+			<organizationUrl>http://www.dei.inf.uc3m.es</organizationUrl>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Javier Ventura</name>
+			<email>100282744@alumnos.uc3m.es</email>
+			<organization>TIW</organization>
+			<organizationUrl>http://www.dei.inf.uc3m.es</organizationUrl>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Luis Lacadena</name>
+			<email>100284647@alumnos.uc3m.es</email>
+			<organization>TIW</organization>
+			<organizationUrl>http://www.dei.inf.uc3m.es</organizationUrl>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
 	</developers>
 	<properties>
 

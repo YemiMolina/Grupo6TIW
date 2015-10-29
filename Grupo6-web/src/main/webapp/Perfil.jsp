@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.Iterator"%>
 <%@ page import="es.uc3m.tiw.web.Usuario"%>
+<%@ page import="es.uc3m.tiw.web.Curso"%>
 <%@ page import="es.uc3m.tiw.web.ServletRegistroUsuario"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -91,6 +92,16 @@
         <li><a class="enlacePerfil" href="../src/error.html">Curso de ingles</a></li>
         <li><a class="enlacePerfil" href="../src/error.html">Curso de piragua</a></li>
       
+      </ul>
+       <!--  Añadido para que salgan sus cursos -->
+         <ul class="enlacesPerfil">
+         <% ArrayList<Curso> CursosMatriculados = (ArrayList<Curso>) request.getAttribute("CursosMatriculados");
+         if(CursosMatriculados!=null){
+         for( Curso CursosMatriculados1 : CursosMatriculados){ %>
+        <li> <%=CursosMatriculados1.getTitulo() %> </li>
+        
+        <%} }%>
+
       </ul>
         
   </div>
