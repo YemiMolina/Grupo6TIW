@@ -25,6 +25,23 @@ public class Usuario{
 	public String imagenuri;
 	
 	
+	public static boolean AddCurso(Curso curso){
+        boolean encontrado=false;
+        if(UsuarioCurso.size()==0){
+            UsuarioCurso.add(curso);
+        }else{
+            for (Curso curso1: UsuarioCurso){
+                if(curso==curso1){
+                encontrado=true;    
+                }
+            }
+            if(encontrado==false){
+                UsuarioCurso.add(curso);
+            }
+        }
+        return !encontrado;
+    } 
+	
 	
 	public String getImagenuri() {
 		return imagenuri;

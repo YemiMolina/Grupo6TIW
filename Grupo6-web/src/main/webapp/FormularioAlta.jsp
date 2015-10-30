@@ -67,7 +67,7 @@
     
     <p> -Precio: <input type="number" name="precio"></p> <br>
     
-    <p> -Cupon Descuento (si se desea): 
+    <p> -Tipos de Descuentos : 
      <br>
         <input type="radio" name="descuento" value="fijo"  /> 10 euros
         <br>

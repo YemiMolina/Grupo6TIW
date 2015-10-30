@@ -122,9 +122,18 @@ public class ServletRegistroUsuario extends HttpServlet {
 public static Usuario UsuarioActual(){
 		
 		Usuario Pepe= new Usuario();
+		Pepe.setUsuario("usuario");
 		Pepe.setNombre("Pepe");
 		Pepe.setApellidos("Fernandez");
-		
+		Pepe.setEdad(31);
+		Pepe.setEmail("email");
+		Pepe.setTelefono("620105970");
+		Pepe.setDireccion("Lopez de Hoyos");
+		Pepe.setDescripcion("Chico");
+		Pepe.setIntereses("Me gustan las matematicas");
+		Pepe.setNumeroTarjeta(12345671234567l);
+		Pepe.setExpiracion("12/12");
+		Pepe.setCodigoCVC(123);
 		
 		return Pepe;
 	}

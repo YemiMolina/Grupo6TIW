@@ -50,6 +50,18 @@
           <button type="button" id="botonSubmit" onclick="editar()" style="color:black">Editar perfil</button>
       </div>
     </div>
+    
+  <%--  <!-- AÑADIDO -->
+    <%Boolean exitoMatriculado = (Boolean)(request.getAttribute("ExitoAniadir"));%>
+    <% if(exitoMatriculado==false){%>
+       
+        <p>Ya esta matriculado en este curso, no puede volver a matricularse </p>
+       
+    <%}else{%>
+        <p>Has sido matriculado </p>
+   
+    <%}%>  --%>
+    
 <%
 		Usuario usuario = (Usuario)request.getAttribute("usuario");
 				
@@ -85,19 +97,20 @@
   </div> --%>
 
   <div id="CursosInscritos">
-      <p>Mis Cursos</p>
-      <ul class="enlacesPerfil">
+      <p>Cursos en los que estoy MATRICULADO</p>
+      <!-- <ul class="enlacesPerfil">
         <li><a class="enlacePerfil" href="../src/error.html">Hml5 avanzado</a></li>
         <li><a class="enlacePerfil" href="../src/error.html">Curso de fotografia</a></li>
         <li><a class="enlacePerfil" href="../src/error.html">Curso de ingles</a></li>
         <li><a class="enlacePerfil" href="../src/error.html">Curso de piragua</a></li>
       
-      </ul>
+      </ul> -->
        <!--  Añadido para que salgan sus cursos -->
          <ul class="enlacesPerfil">
          <% ArrayList<Curso> CursosMatriculados = (ArrayList<Curso>) request.getAttribute("CursosMatriculados");
          if(CursosMatriculados!=null){
          for( Curso CursosMatriculados1 : CursosMatriculados){ %>
+        <p>Titulo del CURSO:</p>
         <li> <%=CursosMatriculados1.getTitulo() %> </li>
         
         <%} }%>
