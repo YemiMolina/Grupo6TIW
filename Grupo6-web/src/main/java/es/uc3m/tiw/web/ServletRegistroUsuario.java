@@ -96,8 +96,8 @@ public class ServletRegistroUsuario extends HttpServlet {
 		listaUsuarios.add(us1);//añadir usuario a la lista de usuarios
 		
 		
-		request.setAttribute("usuario", usuario);
-		request.setAttribute("clave", clave);
+		request.setAttribute("usuario", us1);
+		/*request.setAttribute("clave", clave);
 		request.setAttribute("nombre", nombre);
 		request.setAttribute("apellidos", apellidos);
 		request.setAttribute("edad", edad);
@@ -108,7 +108,7 @@ public class ServletRegistroUsuario extends HttpServlet {
 		request.setAttribute("intereses", intereses);
 		request.setAttribute("numeroTarjeta", numeroTarjeta);
 		request.setAttribute("expiracion", expiracion);
-		request.setAttribute("codigoCVC", codigoCVC);
+		request.setAttribute("codigoCVC", codigoCVC);*/
 		
 		request.setAttribute("listaUsuarios", listaUsuarios);
 
