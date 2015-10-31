@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 //import javax.servlet.http.HttpSession;
@@ -50,15 +51,6 @@ public class ServletRegistroUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		Usuario alumno1 = new Usuario("borjita", "pass1", "Borja", "Perez", 21,1,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265);
-		Usuario alumno2 = new Usuario("carlos", "pass1", "Borja", "Perez", 21,1,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265);
-		Usuario profesor1 = new Usuario("profe", "pass1", "Borja", "Perez", 21,2,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265);
-		
-		listaUsuarios = new ArrayList<Usuario>();
-		listaUsuarios.add(alumno1);
-		listaUsuarios.add(alumno2);
-		listaUsuarios.add(profesor1);	
 	
 		
 		
@@ -96,21 +88,11 @@ public class ServletRegistroUsuario extends HttpServlet {
 		listaUsuarios.add(us1);//añadir usuario a la lista de usuarios
 		
 		
-		request.setAttribute("usuario", us1);
-		/*request.setAttribute("clave", clave);
-		request.setAttribute("nombre", nombre);
-		request.setAttribute("apellidos", apellidos);
-		request.setAttribute("edad", edad);
-		request.setAttribute("email", email);
-		request.setAttribute("telefono", telefono);
-		request.setAttribute("direccion", direccion);
-		request.setAttribute("descripcion", descripcion);
-		request.setAttribute("intereses", intereses);
-		request.setAttribute("numeroTarjeta", numeroTarjeta);
-		request.setAttribute("expiracion", expiracion);
-		request.setAttribute("codigoCVC", codigoCVC);*/
-		
+		request.setAttribute("usuario", us1);		
 		request.setAttribute("listaUsuarios", listaUsuarios);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("usuario", us1);
 
 		
 		//Pinta lo anterior en el jsp Perfil

@@ -8,7 +8,7 @@
     <%@ page import="javax.servlet.http.HttpServletRequest"%>
     <%@ page import="javax.servlet.http.HttpServletResponse"%>
     <%@ page import="javax.servlet.http.HttpSession"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
    
 <html>
 <!--Head contenedor del título de la página, enlaces a las stylesheets, tipografías y charset-->
@@ -26,7 +26,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
   <title>Dokulearning | Home</title>
-  <meta name="Author" content="Grupo de practicas TIW" lang="es">
+  <meta name="Alex" content="Grupo de practicas TIW" lang="es">
   <link rel="icon" type="image/png" href="./images/icono.jpg"> 
 
 
@@ -41,10 +41,10 @@
 
 <body>
   <!--Header-->
-  	<%if (session.getAttribute("activo") != null) { %>
- 	<%@include file="HeaderLog.jsp"%>
+  	<%if (session.getAttribute("usuario") != null) { %>
+ 	<jsp:include page="HeaderLog.jsp"/>
 	<%}else{%>
-	<%@include file="Header.jsp"%>
+	<jsp:include page="Header.jsp"/>
 	<% } %> 
 	
    <div class="row">
@@ -52,7 +52,6 @@
         <div id="cursos">
       <a href="#">
         <img src="./images/cursos.png" alt="imagen busqueda" style="width:100%">
-        <p>SESSSSSS: <%= (String) session.getAttribute("activo") %> </p>
       </a>
       <!-- <figcaption id="figcaption">Encuentra un curso a tu medida, empieza a buscar</figcaption> -->
     </div>

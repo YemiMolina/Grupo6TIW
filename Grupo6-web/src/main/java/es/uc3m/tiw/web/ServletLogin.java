@@ -2,7 +2,7 @@ package es.uc3m.tiw.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import es.uc3m.tiw.web.ServletSession;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +19,8 @@ public class ServletLogin extends HttpServlet {
 	
 	public static ArrayList <Usuario>  listaUsuarios;
 	public static ArrayList <Usuario>  listaCursos;
+	
+	
 	
 	public void init() throws ServletException {
 		
@@ -49,17 +51,30 @@ public class ServletLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		HttpSession session = request.getSession();
 		String accion = request.getParameter("accion");
 		switch (accion) {
 		case "Index":
 			this.getServletConfig().getServletContext().getRequestDispatcher("/Index.jsp").forward(request, response);
-		break;
+			break;
+		case "Salir":
+			session.invalidate();
+			this.getServletConfig().getServletContext().getRequestDispatcher("/Index.jsp").forward(request, response);
+			break;
+		case "Perfil":
+			if (session.getAttribute("usuario") != null) {
+				request.setAttribute("usuario", session.getAttribute("usuario"));
+				this.getServletConfig().getServletContext().getRequestDispatcher("/Perfil.jsp").forward(request, response);
+			}
+			else{
+				this.getServletConfig().getServletContext().getRequestDispatcher("/Index.jsp").forward(request, response);
+			}
+			
+			break;
 		}
-		/*String salir = request.getParameter("accion");
-		if (salir != null && !salir.equals("")){
-			request.getSession().invalidate();
-		}
-		this.getServletContext().getRequestDispatcher("/Index.jsp").forward(request,response);*/
+		
+		/*this.getServletContext().getRequestDispatcher("/Index.jsp").forward(request,response);*/
 	}
 
 	/**
@@ -74,14 +89,15 @@ public class ServletLogin extends HttpServlet {
 		String pagina = "/Index.jsp";
 		
 		HttpSession session = request.getSession();
+		/*ServletContext contexto = session.getServletContext();*/
 		Usuario u = comprobarUsuario (user, password);
 		if (u != null){
 			
 			pagina = "/Perfil.jsp";
 			request.setAttribute("usuarios", listaUsuarios);
 			request.setAttribute("usuario", u);
-			request.setAttribute("acceso", "ok");
-			session.setAttribute("activo", u.getUsuario());
+			/*request.setAttribute("acceso", "ok");*/
+			session.setAttribute("usuario", u);
 			
 		}else{
 			mensaje = "Usuario o contraseña incorrectos";

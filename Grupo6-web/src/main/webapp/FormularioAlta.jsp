@@ -22,7 +22,7 @@
 
 
   <link rel="stylesheet" type="text/css" href="./style/styleHome.css">
-  <link rel="stylesheet" type="text/css" href="./style/styleFormularioAlta.css">
+  <link rel="stylesheet" type="text/css" href="./style/styleFondoBlanco.css">
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script type="text/javascript" src="./script/scriptHome.js"></script>
 
@@ -33,9 +33,9 @@
 
 <body>
   <!--Header-->
-	<%@include file="Header.jsp"%>
+	<%@include file="Header.jsp"%> 
 
-<div id="formalta" >
+<div id="fondoBlanco" >
 <p> <strong>Formulario para dar de alta los cursos a la plataforma Dokulearning</strong></p>
 <form action="ServletCursos" enctype="multipart/form-data" method="post">
     <hr>

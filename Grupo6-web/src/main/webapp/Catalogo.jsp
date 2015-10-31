@@ -5,19 +5,52 @@
     <%@ page import="es.uc3m.tiw.web.Curso"%>
     <%@ page import="es.uc3m.tiw.web.Leccion"%>
     
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
+   
 <html>
+<!--Head contenedor del título de la página, enlaces a las stylesheets, tipografías y charset-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Catalogo de cursos</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <!-- Jquery para cargar los scripts de bootstrap --> 
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <title>Catalogo de cursos</title>
+  <meta name="Alex" content="Grupo de practicas TIW" lang="es">
+  <link rel="icon" type="image/png" href="./images/icono.jpg"> 
+
+
+  <link rel="stylesheet" type="text/css" href="./style/styleHome.css">
+   <link rel="stylesheet" type="text/css" href="./style/styleFondoBlanco.css">
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="./script/scriptHome.js"></script>
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
+  <META HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8"/>
 </head>
+
 <body>
+  <!--Header-->
+  	<%if (session.getAttribute("usuario") != null) { %>
+ 	<jsp:include page="HeaderLog.jsp"/>
+	<%}else{%>
+	<jsp:include page="Header.jsp"/>
+	<% } %> 
+	
+	
 <p><strong>Cursos disponibles</strong></p>
 
 	<ul>
 <%
-	ArrayList<Curso> Listacursos = (ArrayList<Curso>) request.getAttribute("Listacursos");
+	ArrayList<Curso> Listacursos = (ArrayList<Curso>)request.getAttribute("Listacursos");
 	//Iterator<Curso> iterador = null;
 	int contador=0;
 	for(Curso curso: Listacursos) {
@@ -51,6 +84,8 @@
 	
 
 		<br>
-<a href="FormularioAlta.jsp" >Dar de alta otro curso </a>		
+<a href="FormularioAlta.jsp" >Dar de alta otro curso </a>	
+
+<%@include file="Footer.jsp"%>	
 </body>
 </html>

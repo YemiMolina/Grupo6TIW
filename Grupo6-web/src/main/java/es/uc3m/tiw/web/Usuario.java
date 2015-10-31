@@ -2,9 +2,10 @@ package es.uc3m.tiw.web;
 
 import java.util.ArrayList;
 
-//import java.util.ArrayList;
-
 //import java.io.Serializable;
+
+
+
 
 public class Usuario{
 	
@@ -101,6 +102,7 @@ public class Usuario{
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
 
 	}
 

@@ -3,10 +3,9 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.Iterator"%>
 <%@ page import="es.uc3m.tiw.web.Usuario"%>
-<%@ page import="es.uc3m.tiw.web.Curso"%>
 <%@ page import="es.uc3m.tiw.web.ServletRegistroUsuario"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -39,7 +38,7 @@
   <META HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
-<%@include file="HeaderLog.jsp"%>
+<jsp:include page="HeaderLog.jsp"/>
 
   <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -50,19 +49,7 @@
           <button type="button" id="botonSubmit" onclick="editar()" style="color:black">Editar perfil</button>
       </div>
     </div>
-    
-  <%--  <!-- AÑADIDO -->
-    <%Boolean exitoMatriculado = (Boolean)(request.getAttribute("ExitoAniadir"));%>
-    <% if(exitoMatriculado==false){%>
-       
-        <p>Ya esta matriculado en este curso, no puede volver a matricularse </p>
-       
-    <%}else{%>
-        <p>Has sido matriculado </p>
-   
-    <%}%>  --%>
-    
-<%
+ <%
 		Usuario usuario = (Usuario)request.getAttribute("usuario");
 				
 			%>
@@ -79,9 +66,9 @@
 		        <p>Intereses: <%=usuario.getIntereses() %></p>
 		      </div>
 		    </div>     
-		  </div>
+		  </div> 
 			
-<%--     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+<%--    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
       <div class="enlace5">
         <p>Usuario:<%=request.getAttribute("usuario") %></p>
         <p>Nombre:<%=request.getAttribute("nombre") %></p>
@@ -94,27 +81,16 @@
         <p>Intereses: <%=request.getAttribute("intereses") %></p>
       </div>
     </div>     
-  </div> --%>
+  </div>  --%>
 
   <div id="CursosInscritos">
-      <p>Cursos en los que estoy MATRICULADO</p>
-      <!-- <ul class="enlacesPerfil">
+      <p>Mis Cursos</p>
+      <ul class="enlacesPerfil">
         <li><a class="enlacePerfil" href="../src/error.html">Hml5 avanzado</a></li>
         <li><a class="enlacePerfil" href="../src/error.html">Curso de fotografia</a></li>
         <li><a class="enlacePerfil" href="../src/error.html">Curso de ingles</a></li>
         <li><a class="enlacePerfil" href="../src/error.html">Curso de piragua</a></li>
       
-      </ul> -->
-       <!--  Añadido para que salgan sus cursos -->
-         <ul class="enlacesPerfil">
-         <% ArrayList<Curso> CursosMatriculados = (ArrayList<Curso>) request.getAttribute("CursosMatriculados");
-         if(CursosMatriculados!=null){
-         for( Curso CursosMatriculados1 : CursosMatriculados){ %>
-        <p>Titulo del CURSO:</p>
-        <li> <%=CursosMatriculados1.getTitulo() %> </li>
-        
-        <%} }%>
-
       </ul>
         
   </div>
