@@ -31,6 +31,20 @@ public class ServletCursos extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
+	public void init() throws ServletException {
+		
+		Curso curso1 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
+		Curso curso2 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
+		Curso curso3 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
+		Curso curso4 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
+		
+		Listacursos.add(curso1);
+		Listacursos.add(curso2);
+		Listacursos.add(curso3);
+		Listacursos.add(curso4);
+		
+	}
+    
     public ServletCursos() {
         super();
         // TODO Auto-generated constructor stub
@@ -113,7 +127,7 @@ public class ServletCursos extends HttpServlet {
 			
 		}else{
 		//crea un nuevo curso con los atributos 
-		Curso curso= new Curso();
+		Curso curso= new Curso(titulo, descripcion, dificultad, numeroh, precio, uri, contadorId, tipoDescuento);
 		curso.setId(contadorId);
 		contadorId++;
 		curso.setDescripcion(descripcion);

@@ -12,6 +12,20 @@ public class Curso {
 	private int id;
 	private double descuento;
 	
+	public Curso(String titulo, String descripcion, String dificultad,
+			int numeroh, double precio, String imagenuri, int id, double descuento) {
+		//Para cuando quiera meter todos los parametros de una vez
+		super();
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.dificultad = dificultad;
+		this.numeroh = numeroh;
+		this.precio = precio;
+		this.imagenuri = imagenuri;
+		this.id = id;
+		this.descuento = descuento;
+	}
+	
 	
 	public double getPrecioFinal(){
 		return precio-descuento;

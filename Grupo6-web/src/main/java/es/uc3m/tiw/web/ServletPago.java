@@ -54,8 +54,12 @@ public class ServletPago extends HttpServlet {
         request.setAttribute("usuario", usuActual);
         request.setAttribute("apellidos", usuActual.getApellidos());
         request.setAttribute("nombre", usuActual.getNombre());
+         
+        if(ExitoAniadir=true){
+
+        this.getServletConfig().getServletContext().getRequestDispatcher("/Mensaje.jsp").forward(request, response);
+         }
         
-            
         this.getServletConfig().getServletContext().getRequestDispatcher("/Perfil.jsp").forward(request, response);
         
     }
@@ -69,4 +73,3 @@ public class ServletPago extends HttpServlet {
     }
 
 }
-

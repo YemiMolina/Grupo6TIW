@@ -45,7 +45,7 @@
 	<jsp:include page="Header.jsp"/>
 	<% } %> 
 	
-	
+	<div id="fondoBlanco" >
 <p><strong>Cursos disponibles</strong></p>
 
 	<ul>
@@ -63,8 +63,6 @@
 
 		 <img src="ServletImagenes?foto=<%=curso.getImagenuri()%>"> <br><br>
 		 
-		
-		 
 		 <a href="ServletLecciones?id=<%=curso.getId()%>" > Ver sus Lecciones </a></li><br>
 		  <a href="CatalogoLecciones.jsp?id=<%=curso.getId()%>" > Añadir Leccion </a></li> <br>
 		  <a href="Matriculacion.jsp?id=<%=curso.getId()%>&precioFinal=<%=curso.getPrecioFinal()%>" > Matricularse en este curso </a></li> <br>
@@ -78,13 +76,12 @@
 	
 		%>
 	</ul>
-	
-
-
-	
 
 		<br>
 <a href="FormularioAlta.jsp" >Dar de alta otro curso </a>	
+</div>
+
+
 
 <%@include file="Footer.jsp"%>	
 </body>
