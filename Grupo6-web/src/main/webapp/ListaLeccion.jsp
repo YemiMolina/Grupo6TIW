@@ -54,7 +54,7 @@
 				<li><%=leccion.getDescripcion()%> 
 				<a href="Imagenes?foto=<%=leccion.getMaterial() %>">Material</a><br><br>
 				</li>
-
+				<a href="ServletLecciones?action=delete&id=<%=contador%>" >Eliminar leccion </a></li>
 				</li>
 
 				<%

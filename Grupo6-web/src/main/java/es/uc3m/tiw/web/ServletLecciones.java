@@ -34,15 +34,26 @@ public class ServletLecciones extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id=(String) request.getParameter("id");
-		int idint= Integer.parseInt(id);
-		Curso encontrado= ServletCursos.BuscarCurso(idint);
-		ArrayList<Leccion>	leecionlista=encontrado.getListaLecciones();
-		request.setAttribute("Listalecciones", leecionlista);
-			this.getServletConfig().getServletContext().getRequestDispatcher("/ListaLeccion.jsp").forward(request, response);
-			
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String accion=(String) request.getParameter("action");
+        String id=(String) request.getParameter("id");
+        String identificador=(String) request.getParameter("identificador");
+        Integer idINT2=0;
+        int idint= Integer.parseInt(id);
+        Curso encontrado= ServletCursos.BuscarCurso(idint); //id del curso, asi enlazan las listas
+        ArrayList<Leccion>    leecionlista=encontrado.getListaLecciones();
+        if(identificador!=null){
+            idINT2= Integer.valueOf(identificador);
+            }
+       
+        if(accion!=null && accion.equals("delete")){
+            leecionlista.remove(idINT2.intValue());   
+        }
+        request.setAttribute("Listalecciones", leecionlista);
+            this.getServletConfig().getServletContext().getRequestDispatcher("/ListaLeccion.jsp").forward(request, response);
+           
+    }
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -59,7 +70,7 @@ public class ServletLecciones extends HttpServlet {
 		
 		//crea una nueva leccion con sus atributos 
 		Leccion leccion= new Leccion() ;
-		leccion.setId(contadorId);
+		leccion.setIdentificador(contadorId);
 		contadorId++;
 		
 		leccion.setDescripcion(descripcion);

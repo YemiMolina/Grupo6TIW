@@ -6,6 +6,7 @@ public class Leccion {
 	private String descripcion;
 	private Curso curso;
 	private int id;
+	private int identificador;
 	
 	
 	public int getId() {
@@ -35,6 +36,12 @@ public class Leccion {
 	}
 	public void setMaterial(String material) {
 		this.material = material;
+	}
+	public int getIdentificador() {
+		return identificador;
+	}
+	public void setIdentificador(int identificador) {
+		this.identificador = identificador;
 	}
 	
 

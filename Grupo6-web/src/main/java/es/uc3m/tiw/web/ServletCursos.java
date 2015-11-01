@@ -90,7 +90,7 @@ public class ServletCursos extends HttpServlet {
 		Double tipoDescuento = null;
 		if(descuento.equals("fijo")){
 			tipoDescuento=10.0;
-		}else if(descuento.equals("varibale")) {
+		}else if(descuento.equals("variable")) {
 			tipoDescuento=precio*0.10;
 		}else if (descuento.equals("ninguno")){
 			tipoDescuento=0.0;
