@@ -159,7 +159,7 @@ public class ServletCursos extends HttpServlet {
 		//donde se guardan las imagenes
 		//lo va leyendo del Part y lo guarda en un lugar del disco
 		try {
-			FileOutputStream outputStream = new FileOutputStream("/home/tiw/fotos/" + archivoNombre);
+			FileOutputStream outputStream = new FileOutputStream("./images" + archivoNombre);
 			
 			int read = 0;
 			InputStream inputStream =filePart.getInputStream();

@@ -4,6 +4,8 @@
 <%@ page import="java.util.Iterator"%>
 <%@ page import="es.uc3m.tiw.web.Usuario"%>
 <%@ page import="es.uc3m.tiw.web.ServletRegistroUsuario"%>
+<%@ page import="es.uc3m.tiw.web.Curso"%>
+
 
 <!DOCTYPE html >
 <html>
@@ -67,30 +69,27 @@
 		      </div>
 		    </div>     
 		  </div> 
-			
-<%--    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-      <div class="enlace5">
-        <p>Usuario:<%=request.getAttribute("usuario") %></p>
-        <p>Nombre:<%=request.getAttribute("nombre") %></p>
-        <p>Apellidos: <%=request.getAttribute("apellidos") %></p>
-        <p>Edad: <%=request.getAttribute("edad") %></p>
-        <p>E-mail: <%=request.getAttribute("email") %></p>
-        <p>Tel&eacute;fono: <%=request.getAttribute("telefono") %></p>
-        <p>Direcci&oacute;n:<%=request.getAttribute("direccion") %> </p>
-        <p>Descripci&oacute;n: <%=request.getAttribute("descripcion") %></p>
-        <p>Intereses: <%=request.getAttribute("intereses") %></p>
-      </div>
-    </div>     
-  </div>  --%>
 
   <div id="CursosInscritos">
-      <p>Mis Cursos</p>
-      <ul class="enlacesPerfil">
+      <p>Cursos en los que estoy MATRICULADO</p>
+      
+      <!-- <ul class="enlacesPerfil">
         <li><a class="enlacePerfil" href="../src/error.html">Hml5 avanzado</a></li>
         <li><a class="enlacePerfil" href="../src/error.html">Curso de fotografia</a></li>
         <li><a class="enlacePerfil" href="../src/error.html">Curso de ingles</a></li>
         <li><a class="enlacePerfil" href="../src/error.html">Curso de piragua</a></li>
       
+      </ul> -->
+       <!--  Añadido para que salgan sus cursos -->
+         <ul class="enlacesPerfil">
+         
+         <% ArrayList<Curso> CursosMatriculados = (ArrayList<Curso>) request.getAttribute("CursosMatriculados");
+         if(CursosMatriculados!=null){
+         for( Curso CursosMatriculados1 : CursosMatriculados){ %>
+        <p>Titulo del CURSO:</p>
+        <li> <%=CursosMatriculados1.getTitulo() %> </li>
+        <%} }%>
+
       </ul>
         
   </div>

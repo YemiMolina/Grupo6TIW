@@ -14,9 +14,9 @@
             <h5>USUARIOS</h5>
             <br>
             <ul class="enlacesFinal">
-              <li><a class="enlaceF" href="#" onclick="permitir('perfil')">Mi Perfil</a></li>
-              <li><a class="enlaceF" href="#" onclick="permitir('cv')">Mis Cursos</a></li>
-              <li><a class="enlaceF" href="../src/error.html">Mis Contactos</a></li>
+              <li><a class="enlaceF" href="ServletLogin?accion=Perfil" >Mi Perfil</a></li>
+              <li><a class="enlaceF" href="ServletLogin?accion=Perfil" >Mis Cursos</a></li>
+              <li><a class="enlaceF" href="./Error.jsp">Mis Contactos</a></li>
             </ul>
           </div>
         </div>
@@ -26,9 +26,9 @@
             <h5>PLATAFORMA</h5>
             <br>
             <ul class="enlacesFinal">
-              <li><a class="enlaceF" href="../src/error.html">Personas</a></li>
-              <li><a class="enlaceF" href="../src/error.html">Profesores</a></li>
-              <li><a class="enlaceF" href="../src/error.html">Cursos</a></li>
+              <li><a class="enlaceF" href="ServletLogin?accion=Perfiles">Personas</a></li>
+              <li><a class="enlaceF" href="ServletLogin?accion=Perfiles">Profesores</a></li>
+              <li><a class="enlaceF" href="ServletCursos">Cursos</a></li>
             </ul>
           </div>
         </div>
@@ -38,9 +38,9 @@
             <h5>CONTACTO</h5>
             <br>
             <ul class="enlacesFinal">
-              <li><a class="enlaceF" href="../src/error.html">Contacta</a></li>
-              <li><a class="enlaceF" href="../src/error.html">Información</a></li>
-              <li><a class="enlaceF" href="../src/error.html">Trabaja con nosotros</a></li>
+              <li><a class="enlaceF" href="./Error.jsp">Contacta</a></li>
+              <li><a class="enlaceF" href="./Error.jsp">Información</a></li>
+              <li><a class="enlaceF" href="./Error.jsp">Trabaja con nosotros</a></li>
               </ul>
             </div>
           </div>

@@ -51,7 +51,7 @@
     <div class="col-xs-12 col-sm-6">
         <div id="cursos">
       <a href="#">
-        <img src="./images/cursos.png" alt="imagen busqueda" style="width:100%">
+        <a href="ServletCursos"><img src="./images/cursos.png" alt="" style="width:100%"></a>
       </a>
       <!-- <figcaption id="figcaption">Encuentra un curso a tu medida, empieza a buscar</figcaption> -->
     </div>
@@ -62,7 +62,7 @@
     <div id="perfil">
       <!-- <figure onmouseover="mostrar('figcaption2')" onmouseout="ocultar('figcaption2')" onclick="permitir('perfil')"> -->
       <a href="#">
-        <img src="./images/perfil.png" alt="imagen empresa" style="width:100%">
+        <a href="ServletLogin?accion=Perfil"><img src="./images/perfil.png" alt="" style="width:100%"></a>
       </a>
     </div>
   </div>
@@ -81,19 +81,19 @@
   <div class="col-xs-12 col-sm-6 col-sm-offset-3" style="margin-top: 10px; margin-bottom: 10px">
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="./images/curso_ingles.png" alt="" style="width:100%">
+          <a href="ServletCursos"><img src="./images/curso_ingles.png" alt="" style="width:100%"></a>
           <div class="carousel-caption">
             ...
           </div>
         </div>
         <div class="item">
-          <img src="./images/curso_html.png" alt="..." style="width:100%">
+          <a href="ServletCursos"><img src="./images/curso_html.png" alt="..." style="width:100%"></a>
           <div class="carousel-caption">
             ...
           </div>
         </div>
         <div class="item">
-          <img src="./images/curso_foto.png" alt="..." style="width:100%">
+          <a href="ServletCursos"><img src="./images/curso_foto.png" alt="..." style="width:100%"></a>
           <div class="carousel-caption">
             ...
           </div>

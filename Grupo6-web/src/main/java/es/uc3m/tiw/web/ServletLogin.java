@@ -26,10 +26,10 @@ public class ServletLogin extends HttpServlet {
 		
 		
 		
-		Usuario alumno1 = new Usuario("borjita", "pass1", "Borja", "Perez", 21,1,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265);
-		Usuario alumno2 = new Usuario("carlos", "pass1", "Borja", "Perez", 21,1,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265);
-		Usuario profesor1 = new Usuario("profe", "pass1", "Borja", "Perez", 21,2,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265);
-		Usuario admin = new Usuario("admin", "admin", "Administrador", "The boss", 21,2,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265);
+		Usuario alumno1 = new Usuario("borjita", "pass1", "Borja", "Perez", 21,1,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265, "" );
+		Usuario alumno2 = new Usuario("carlos", "pass1", "Borja", "Perez", 21,1,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265, "");
+		Usuario profesor1 = new Usuario("profe", "pass1", "Borja", "Perez", 21,2,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265, "");
+		Usuario admin = new Usuario("admin", "admin", "Administrador", "The boss", 21,0,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265, "");
 		
 		listaUsuarios = new ArrayList<Usuario>();
 		listaUsuarios.add(alumno1);
@@ -73,6 +73,14 @@ public class ServletLogin extends HttpServlet {
 				this.getServletConfig().getServletContext().getRequestDispatcher("/Index.jsp").forward(request, response);
 			}
 			
+			break;
+		case "Perfil2":
+				request.getAttribute("usuario");
+				this.getServletConfig().getServletContext().getRequestDispatcher("/Perfil.jsp").forward(request, response);
+			
+		case "Perfiles":
+			request.setAttribute("usuarios", listaUsuarios);
+			this.getServletConfig().getServletContext().getRequestDispatcher("/MuestraUsuarios.jsp").forward(request, response);
 			break;
 		}
 		

@@ -4,6 +4,15 @@
     <%@ page import="java.util.Iterator"%>
     <%@ page import="es.uc3m.tiw.web.Curso"%>
     <%@ page import="es.uc3m.tiw.web.Leccion"%>
+     <%@ page import="es.uc3m.tiw.web.Usuario"%>
+     
+     <%@ page import="es.uc3m.tiw.web.ServletSession"%>
+    <%@ page import="javax.servlet.ServletException"%>
+    <%@ page import="javax.servlet.annotation.WebServlet"%>
+    <%@ page import="javax.servlet.http.HttpServlet"%>
+    <%@ page import="javax.servlet.http.HttpServletRequest"%>
+    <%@ page import="javax.servlet.http.HttpServletResponse"%>
+    <%@ page import="javax.servlet.http.HttpSession"%>
     
 <!DOCTYPE html >
    
@@ -29,8 +38,11 @@
 
   <link rel="stylesheet" type="text/css" href="./style/styleHome.css">
    <link rel="stylesheet" type="text/css" href="./style/styleFondoBlanco.css">
+    <link rel="stylesheet" type="text/css" href="./style/styleSimulacion.css">
+    
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script type="text/javascript" src="./script/scriptHome.js"></script>
+  <script type="text/javascript" src="./script/scriptSimulacion.js"></script>
 
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
@@ -45,17 +57,35 @@
 	<jsp:include page="Header.jsp"/>
 	<% } %> 
 	
-	<div id="fondoBlanco" >
-<p><strong>Cursos disponibles</strong></p>
+<div id="busqueda">
+    <br><p>Se han encontrado los siguientes resultados</p>
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+    <div id="parametros">
+      <br><h3 class="titulosPar">Configuración</h3>
+      <h4 class="titulosPar">Tipo de dificultad</h4>
+      <p class="datosPar">Basico</p>
+      <input class="check" type="checkbox" id="basico" name="Basico" value="Basico" onchange="check()" checked>
+      <p class="datosPar">Avanzado</p>
+      <input class="check" type="checkbox" id="avanzado" name="Avanzado" value="Avanzado" onchange="check()" checked><br>
+      <h4 class="titulosPar">Duracion</h4>
+      <p class="datosPar">Corta</p>
+      <input class="check" type="checkbox" id="corta" name="Corta" value="Corta" onchange="check()" checked>
+      <p class="datosPar">Larga</p>
+      <input class="check" type="checkbox" id="larga" name="Larga" value="Larga" onchange="check()" checked><br>
+    </div>
+    </div>
+    
+    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
 
-	<ul>
 <%
 	ArrayList<Curso> Listacursos = (ArrayList<Curso>)request.getAttribute("Listacursos");
 	//Iterator<Curso> iterador = null;
 	int contador=0;
 	for(Curso curso: Listacursos) {
 		%>
-		<li><%=curso.getTitulo() %> <br>
+		<div id="fondoBlanco" style="margin: 5px">
+		<%=curso.getTitulo() %> <br>
 		<%=curso.getDescripcion() %> <br>
 		El precio inicial es:<%=curso.getPrecio()%><br>
 		El precio final es: <%=curso.getPrecioFinal()%> <br>
@@ -64,21 +94,36 @@
 		 <img src="ServletImagenes?foto=<%=curso.getImagenuri()%>"> <br><br>
 		 
 		 <a href="ServletLecciones?id=<%=curso.getId()%>" > Ver sus Lecciones </a></li><br>
-		  <a href="CatalogoLecciones.jsp?id=<%=curso.getId()%>" > Añadir Leccion </a></li> <br>
-		  <a href="Matriculacion.jsp?id=<%=curso.getId()%>&precioFinal=<%=curso.getPrecioFinal()%>" > Matricularse en este curso </a></li> <br>
-		  <a href="ServletCursos?action=modificar&id=<%=curso.getId()%>" > Modificar Curso </a></li><br>
-		 <a href="ServletCursos?action=delete&id=<%=contador%>" >Eliminar curso </a></li>
+		 <a href="Matriculacion.jsp?id=<%=curso.getId()%>&precioFinal=<%=curso.getPrecioFinal()%>" > Matricularse en este curso </a></li> <br>
+		  
+		  <%if (session.getAttribute("usuario") != null) { 
+			Usuario log = (Usuario)session.getAttribute("usuario");	
+			if( log.getRol() != 1 ){ %>
+				<a href="CatalogoLecciones.jsp?id=<%=curso.getId()%>" > Añadir Leccion </a></li> <br>
+		  		<a href="ServletCursos?action=modificar&id=<%=curso.getId()%>" > Modificar Curso </a></li><br>
+		 		<a href="ServletCursos?action=delete&id=<%=contador%>" >Eliminar curso </a></li>	
+			<%} %>
+		<%} %>
+		  
 		
-		
+		</div>
 		<%contador++; %>
 		<%
 	}
 	
 		%>
-	</ul>
+		</div>
+		</div>
+
 
 		<br>
-<a href="FormularioAlta.jsp" >Dar de alta otro curso </a>	
+		
+		<%if (session.getAttribute("usuario") != null) { 
+			Usuario log = (Usuario)session.getAttribute("usuario");	
+			if( log.getRol() != 1 ){ %>
+				<a href="FormularioAlta.jsp" ><input id="" type="submit" value="Dar de alta otro curso"></a>	
+			<%} %>
+		<%} %>
 </div>
 
 

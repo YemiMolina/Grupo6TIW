@@ -2,6 +2,7 @@ package es.uc3m.tiw.web;
 
 import java.util.ArrayList;
 
+
 //import java.io.Serializable;
 
 
@@ -24,6 +25,7 @@ public class Usuario{
 	private String expiracion;
 	private int codigoCVC;
 	public String imagenuri;
+	public ArrayList<Curso> Listacursos= new ArrayList<Curso>();
 	
 	
 	public static boolean AddCurso(Curso curso){
@@ -79,7 +81,7 @@ public class Usuario{
 
 	public Usuario(String usuario, String clave, String nombre,
 			String apellidos,int edad, int rol, String email, String telefono, String direccion,
-			String descripcion, String intereses,int numeroTarjeta,String expiracion,int codigoCVC) {
+			String descripcion, String intereses,int numeroTarjeta,String expiracion,int codigoCVC, String imagenuri) {
 		//Para cuando quiera meter todos los parametros de una vez
 		super();
 		this.usuario = usuario;
@@ -96,6 +98,7 @@ public class Usuario{
 		this.numeroTarjeta = numeroTarjeta;
 		this.expiracion = expiracion;
 		this.codigoCVC = codigoCVC;
+		this.imagenuri = imagenuri;
 	}
 	
 	

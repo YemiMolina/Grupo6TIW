@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServletPago
@@ -33,7 +34,10 @@ public class ServletPago extends HttpServlet {
         String id=(String) request.getParameter("id");
         int idint= Integer.parseInt(id);
         Curso encontrado= ServletCursos.BuscarCurso(idint);
-        Usuario usuActual=ServletRegistroUsuario.UsuarioActual(); //Busco en usuario actual
+       
+        HttpSession session = request.getSession();
+        Usuario usuActual= (Usuario)session.getAttribute("usuario"); 
+        //Busco en usuario actual
         
         /*//iniar la sesion y meto el objeto que quiera
         request.getSession().setAttribute("usuarioActual", usuActual);
