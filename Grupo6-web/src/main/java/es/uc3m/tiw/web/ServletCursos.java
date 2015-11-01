@@ -34,14 +34,14 @@ public class ServletCursos extends HttpServlet {
 	public void init() throws ServletException {
 		
 		Curso curso1 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
-		Curso curso2 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
+		/*Curso curso2 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
 		Curso curso3 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
 		Curso curso4 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
-		
+		*/
 		Listacursos.add(curso1);
-		Listacursos.add(curso2);
-		Listacursos.add(curso3);
-		Listacursos.add(curso4);
+		//Listacursos.add(curso2);
+		//Listacursos.add(curso3);
+		//Listacursos.add(curso4);
 		
 	}
     

@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.util.ArrayList"%>
     <%@ page import="es.uc3m.tiw.web.Leccion"%>
-<!DOCTYPE html >
-   
+    <%@ page import="es.uc3m.tiw.web.Curso"%>
+    <%@ page import="es.uc3m.tiw.web.ServletCursos"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!--Head contenedor del título de la página, enlaces a las stylesheets, tipografías y charset-->
 <head>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -34,41 +34,43 @@
   <META HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 
-<body>
-  <!--Header-->
-  	<%if (session.getAttribute("usuario") != null) { %>
- 	<jsp:include page="HeaderLog.jsp"/>
-	<%}else{%>
-	<jsp:include page="Header.jsp"/>
-	<% } %> 
-	
-	<div id="fondoBlanco" >
-			<ul>
-				<%
-					if (request.getAttribute("Listalecciones") != null) {
-						ArrayList<Leccion> ListaLecciones = (ArrayList<Leccion>) request
-								.getAttribute("Listalecciones");
-						int contador = 0;
-						for (Leccion leccion : ListaLecciones) {
-				%>
-				<li><%=leccion.getDescripcion()%> 
-				<a href="Imagenes?foto=<%=leccion.getMaterial() %>">Material</a><br><br>
-				</li>
-				<a href="ServletLecciones?action=delete&id=<%=contador%>" >Eliminar leccion </a></li>
-				</li>
+<jsp:include page="HeaderLog.jsp"/>
 
-				<%
-					contador++;
-				%>
-				<%
-					}
-					}
-				%>
+<body id="body">
 
-			</ul>
-	</div>
-			
-		<!--Pie de página-->
+	<div id="fondoBlanco">
+            <ul>
+            <%
+                String id = request.getParameter("id");
+                System.out.println("que hay en id curos"+ id);
+                Curso curso= ServletCursos.BuscarCurso(Integer.parseInt(id));
+                if(curso.getListaLecciones()!=null){
+                    ArrayList<Leccion> ListaLecciones2 =curso.getListaLecciones();
+                    int contador = 0;
+                    for (Leccion leccion : ListaLecciones2) {
+                        System.out.println("que hay en identificador de leccion"+ leccion.getIdentificador());
+                        contador=leccion.getIdentificador();
+            %>
+            
+                <li> <td><%=leccion.getDescripcion()%> </td> <td><%=leccion.getMaterial()%> </td><br>
+                <li>
+                <a href="ServletLecciones?action=delete&id=<%=contador%>&curso=<%=id %>" >Eliminar leccion </a></li> 
+                 <a href="ServletLecciones?action=deleteL&id=<%=contador%>&curso=<%=id%>" >Eliminar Material </a></li> 
+            
+            <% 
+                        contador++;
+                    }// fin for recorrer lista lecciones2
+            }// fin del if de lista vacia
+            %>
+            
+            
+                
+
+            </ul>
+            <a href="ServletCursos?id=<%=request.getParameter("id")%>">
+                    Ir al listado de Cursos </a>
+       </div>       
+           <!--Pie de página-->
 	<%@include file="Footer.jsp"%>
 </body>
 </html>
