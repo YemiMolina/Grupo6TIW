@@ -52,6 +52,16 @@ public class ServletRegistroUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 	
+		Usuario alumno1 = new Usuario("borjita", "pass1", "Borja", "Perez", 21,1,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265, "" );
+		Usuario alumno2 = new Usuario("carlos", "pass1", "Borja", "Perez", 21,1,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265, "");
+		Usuario profesor1 = new Usuario("profe", "pass1", "Borja", "Perez", 21,2,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265, "");
+		Usuario admin = new Usuario("admin", "admin", "Administrador", "The boss", 21,0,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265, "");
+		
+		listaUsuarios = new ArrayList<Usuario>();
+		listaUsuarios.add(alumno1);
+		listaUsuarios.add(alumno2);
+		listaUsuarios.add(profesor1);
+		listaUsuarios.add(admin);
 		
 		
 		String usuario = request.getParameter("usuario");
@@ -101,7 +111,7 @@ public class ServletRegistroUsuario extends HttpServlet {
 		
 	}
 	
-public static Usuario UsuarioActual(){
+/*public static Usuario UsuarioActual(){
 		
 		Usuario Pepe= new Usuario();
 		Pepe.setUsuario("usuario");
@@ -118,9 +128,9 @@ public static Usuario UsuarioActual(){
 		Pepe.setCodigoCVC(123);
 		
 		return Pepe;
-	}
+	}*/
 
-	
+
 public static String guardarImagen(Part filePart){
 		
 		Date date = new Date();
