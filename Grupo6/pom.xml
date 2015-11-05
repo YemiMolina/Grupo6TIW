@@ -133,9 +133,9 @@
 		<!-- @OVERRIDE this property per each project -->
 		<repository.domain>github.com</repository.domain>
 		<!-- @OVERRIDE this property per each project -->
-		<repository.user>changeme</repository.user>
+		<repository.user>YemiMolina</repository.user>
 		<!-- @OVERRIDE this property per each project -->
-		<repository.name>changeme</repository.name>
+		<repository.name>Grupo6tiw</repository.name>
 		
 		<!-- @OVERRIDE [This is the branch that the web "pages" are located in. 
 			For GitHub, gh-pages; ] -->
@@ -873,6 +873,6 @@
     <module>Grupo6-util</module>
     <module>Grupo6-model</module>
   </modules>
-  <name>Dokulearning</name>
   <description>Practica TIW</description>
+  <name>Grupo6</name>
 </project>
