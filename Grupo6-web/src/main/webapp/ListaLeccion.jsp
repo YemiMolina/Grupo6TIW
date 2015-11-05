@@ -52,7 +52,8 @@
                         contador=leccion.getIdentificador();
             %>
             
-                <li> <td><%=leccion.getDescripcion()%> </td> <td><%=leccion.getMaterial()%> </td><br>
+                <li> <td><%=leccion.getDescripcion()%> </td> <br>
+                <a href="ServletImagenes?foto=<%=leccion.getMaterial() %>">Material de la leccion</a> <br><br>
                 <li>
                 <a href="ServletLecciones?action=delete&id=<%=contador%>&curso=<%=id %>" >Eliminar leccion </a></li> 
                  <a href="ServletLecciones?action=deleteL&id=<%=contador%>&curso=<%=id%>" >Eliminar Material </a></li> 

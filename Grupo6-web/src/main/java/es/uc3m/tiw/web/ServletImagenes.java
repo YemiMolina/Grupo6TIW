@@ -41,12 +41,12 @@ public class ServletImagenes extends HttpServlet {
 	    		   request.getParameter("foto");
 	       if(foto==null || foto.length()==0){ 
 	    	   
-	    	   file=new File("/home/tiw/workspace/maven.1446397060895/Grupo6-web/src/main/webapp/images/icono.jpg");
+	    	   file=new File("icono.jpg");
 	       }else{ 
 
-	    	   file=new File("./images"+ foto);
+	    	   file=new File("images"+ foto);
 	       }
-	       Path path= Paths.get("./images"+ foto);
+	       Path path= Paths.get("images"+ foto);
 	       response.setContentType(Files.probeContentType(path));
 	       response.setContentLength((int)file.length());
 	    

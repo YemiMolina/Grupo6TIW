@@ -44,7 +44,7 @@ public class ServletMisCursos extends HttpServlet {
                 //Aqui meto la info del obj usuario y ya puedo acceder a el y obtener lo que quiera
                 Usuario usuActual2= (Usuario) request.getSession().getAttribute("usuarioActual");*/
                 
-                boolean ExitoAniadir= Usuario.AddCurso(encontrado);
+                boolean ExitoAniadir= usuActual.AddCurso(encontrado);
                 
                 ArrayList<Curso> CursosMatriculados = new ArrayList<Curso>();
                 CursosMatriculados=usuActual.getUsuarioCurso();

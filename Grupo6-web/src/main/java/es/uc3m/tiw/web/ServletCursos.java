@@ -64,24 +64,23 @@ public class ServletCursos extends HttpServlet {
 	}
 		if(accion!=null && accion.equals("delete")){
 			Listacursos.remove(idInt.intValue());	
-		}
-			request.setAttribute("Listacursos", Listacursos);
+		
+			/*request.setAttribute("Listacursos", Listacursos);
 			this.getServletConfig().getServletContext().getRequestDispatcher("/Catalogo.jsp").forward(request, response);
+			*/
 			
-			
-		/*}else if (accion.equals("modificar")){
+		}else if (accion!=null && accion.equals("modificar")){
 			
 			Curso CursoMod=BuscarCurso(idInt);
 			request.setAttribute("CursoModificar", CursoMod);
 			request.setAttribute("Listacursos", Listacursos);
 			this.getServletConfig().getServletContext().getRequestDispatcher("/Modificacion.jsp").forward(request, response);
-		}*/
-			
 		}
-		/*request.setAttribute("Listacursos", Listacursos);
-		this.getServletConfig().getServletContext().getRequestDispatcher("/Catalogo.jsp").forward(request, response);
-		*/
-	
+			
+		
+		request.setAttribute("Listacursos", Listacursos);
+		this.getServletConfig().getServletContext().getRequestDispatcher("/Catalogo.jsp").forward(request, response);		
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -159,7 +158,7 @@ public class ServletCursos extends HttpServlet {
 		//donde se guardan las imagenes
 		//lo va leyendo del Part y lo guarda en un lugar del disco
 		try {
-			FileOutputStream outputStream = new FileOutputStream("./images" + archivoNombre);
+			FileOutputStream outputStream = new FileOutputStream("images" + archivoNombre);
 			
 			int read = 0;
 			InputStream inputStream =filePart.getInputStream();

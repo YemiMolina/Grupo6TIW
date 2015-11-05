@@ -11,6 +11,21 @@ public class Curso {
 	private String imagenuri;
 	private int id;
 	private double descuento;
+	public ArrayList<Usuario> ListaUsuarios= new ArrayList<Usuario>();
+	
+	//Funcion en la que el profesor se queda con el 70% del precio del curso
+	private Double getSalarioProfesor(){
+	double Salario= getPrecioFinal()*0.70;
+	int numeroUsuarios=ListaUsuarios.size();
+	double salarioTotal=numeroUsuarios*Salario;
+	return salarioTotal;
+	}
+	
+	
+	public void AddUsuario(Usuario usuario){
+		ListaUsuarios.add(usuario);
+    } 
+	
 	
 	public Curso(String titulo, String descripcion, String dificultad,
 			int numeroh, double precio, String imagenuri, int id, double descuento) {
@@ -27,6 +42,16 @@ public class Curso {
 	}
 	
 	
+	public ArrayList<Usuario> getListaUsuarios() {
+		return ListaUsuarios;
+	}
+
+
+	public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
+		ListaUsuarios = listaUsuarios;
+	}
+
+
 	public double getPrecioFinal(){
 		return precio-descuento;
 	}

@@ -28,7 +28,9 @@ public class Usuario{
 	public ArrayList<Curso> Listacursos= new ArrayList<Curso>();
 	
 	
-	public static boolean AddCurso(Curso curso){
+	
+	
+	public boolean AddCurso(Curso curso){
         boolean encontrado=false;
         if(UsuarioCurso.size()==0){
             UsuarioCurso.add(curso);
@@ -58,19 +60,19 @@ public class Usuario{
 
 
 
-	public static ArrayList<Curso> getUsuarioCurso() {
+	public ArrayList<Curso> getUsuarioCurso() {
 		return UsuarioCurso;
 	}
 
 
 
-	public static void setUsuarioCurso(ArrayList<Curso> usuarioCurso) {
+	public  void setUsuarioCurso(ArrayList<Curso> usuarioCurso) {
 		UsuarioCurso = usuarioCurso;
 	}
 
 
 
-	public static ArrayList<Curso> UsuarioCurso = new ArrayList<Curso>(); 
+	public  ArrayList<Curso> UsuarioCurso = new ArrayList<Curso>(); 
 	
 	
 	public Usuario() {
