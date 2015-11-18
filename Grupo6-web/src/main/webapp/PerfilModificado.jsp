@@ -66,20 +66,20 @@
       </div>
     </div>
  <%
-		Usuario usuario = (Usuario)request.getAttribute("usuario");
+		Usuario UsuarioMod = (Usuario)request.getAttribute("UsuarioModificar");
 				
 			%>
 			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 		      <div class="enlace5">
-		        <p>Usuario:<%=usuario.getUsuario() %></p>
-		        <p>Nombre:<%=usuario.getNombre() %></p>
-		        <p>Apellidos: <%=usuario.getApellidos() %></p>
-		        <p>Edad: <%=usuario.getEdad() %></p>
-		        <p>E-mail: <%=usuario.getEmail() %></p>
-		        <p>Tel&eacute;fono: <%=usuario.getTelefono() %></p>
-		        <p>Direcci&oacute;n:<%=usuario.getDireccion() %> </p>
-		        <p>Descripci&oacute;n: <%=usuario.getDescripcion() %></p>
-		        <p>Intereses: <%=usuario.getIntereses() %></p>
+		        <p>Usuario:<%=UsuarioMod.getUsuario() %></p>
+		        <p>Nombre:<%=UsuarioMod.getNombre() %></p>
+		        <p>Apellidos: <%=UsuarioMod.getApellidos() %></p>
+		        <p>Edad: <%=UsuarioMod.getEdad() %></p>
+		        <p>E-mail: <%=UsuarioMod.getEmail() %></p>
+		        <p>Tel&eacute;fono: <%=UsuarioMod.getTelefono() %></p>
+		        <p>Direcci&oacute;n:<%=UsuarioMod.getDireccion() %> </p>
+		        <p>Descripci&oacute;n: <%=UsuarioMod.getDescripcion() %></p>
+		        <p>Intereses: <%=UsuarioMod.getIntereses() %></p>
 		      </div>
 		    </div>     
 		  </div> 
@@ -109,6 +109,20 @@
   </div>
 
 <%@include file="Footer.jsp"%>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

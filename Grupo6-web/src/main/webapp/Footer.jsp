@@ -1,11 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 
-
-
-  <body id="body" onload="" >
-
-      <!--Pie de pÃ¡gina-->
+      <!--Pie de página-->
     <div id="footer">  
       <div class="row">
         <div class="col-xs-12 col-sm-4">
@@ -39,13 +33,13 @@
             <br>
             <ul class="enlacesFinal">
               <li><a class="enlaceF" href="./Error.jsp">Contacta</a></li>
-              <li><a class="enlaceF" href="./Error.jsp">InformaciÃ³n</a></li>
+              <li><a class="enlaceF" href="./Error.jsp">Información</a></li>
               <li><a class="enlaceF" href="./Error.jsp">Trabaja con nosotros</a></li>
               </ul>
             </div>
           </div>
         </div>
-<p>COPYRIGHT (C) 2015 Dokulearning S.L. | TODOS LOS DERECHOS RESERVADOS. | DISEÃ‘ADO POR: Javier Ventura, Rocio Mani, Luis Lacadena, Yemi Molina y Alex Ortega</P>
+<p>COPYRIGHT (C) 2015 Dokulearning S.L. | TODOS LOS DERECHOS RESERVADOS. | DISEÑADO POR: Javier Ventura, Rocio Mani, Luis Lacadena, Yemi Molina y Alex Ortega</P>
   <!-- <a class="back-to-top" href="#top" style="color:white">Back to top</a> -->
       </div>
-    </body>
+   
