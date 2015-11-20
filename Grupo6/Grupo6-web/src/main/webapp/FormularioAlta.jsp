@@ -16,13 +16,13 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  <title>LearnIt | Home</title>
+  <title>Dokulearning| Formulario de Alta</title>
   <meta name="Author" content="Grupo de practicas TIW" lang="es">
   <link rel="icon" type="image/png" href="./images/icono.jpg"> 
 
 
   <link rel="stylesheet" type="text/css" href="./style/styleHome.css">
-  <link rel="stylesheet" type="text/css" href="./style/styleFormularioAlta.css">
+  <link rel="stylesheet" type="text/css" href="./style/styleFondoBlanco.css">
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script type="text/javascript" src="./script/scriptHome.js"></script>
 
@@ -33,11 +33,11 @@
 
 <body>
   <!--Header-->
-	<%@include file="Header.jsp"%>
+	<%@include file="Header.jsp"%> 
 
-<div id="formalta" >
+<div id="fondoBlanco" >
 <p> <strong>Formulario para dar de alta los cursos a la plataforma Dokulearning</strong></p>
-<form action="cursos" enctype="multipart/form-data" method="post">
+<form action="ServletCursos" enctype="multipart/form-data" method="post">
     <hr>
     <fieldset>
     <legend> Alta de curso 
@@ -66,6 +66,15 @@
     <br>
     
     <p> -Precio: <input type="number" name="precio"></p> <br>
+    
+    <p> -Tipos de Descuentos : 
+     <br>
+        <input type="radio" name="descuento" value="fijo"  /> 10 euros
+        <br>
+        <input type="radio" name="descuento" value="variable"  /> 10% de descuento
+        <br>
+        <input type="radio" name="descuento" value="ninguno"  /> Ningun descuento
+        <br>
     
 	
 	<p> Subir Imagen</p>

@@ -31,6 +31,20 @@ public class ServletCursos extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
+	public void init() throws ServletException {
+		
+		Curso curso1 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
+		/*Curso curso2 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
+		Curso curso3 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
+		Curso curso4 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
+		*/
+		Listacursos.add(curso1);
+		//Listacursos.add(curso2);
+		//Listacursos.add(curso3);
+		//Listacursos.add(curso4);
+		
+	}
+    
     public ServletCursos() {
         super();
         // TODO Auto-generated constructor stub
@@ -44,21 +58,37 @@ public class ServletCursos extends HttpServlet {
 	String accion=(String) request.getParameter("action");
 	String id=(String) request.getParameter("id");
 	Integer idInt=0;
+	
 	if(id!=null){
 	idInt= Integer.valueOf(id);
 	}
 		if(accion!=null && accion.equals("delete")){
 			Listacursos.remove(idInt.intValue());	
-		}
-		request.setAttribute("Listacursos", Listacursos);
-		this.getServletConfig().getServletContext().getRequestDispatcher("/Catalogo.jsp").forward(request, response);
 		
-	}
+			/*request.setAttribute("Listacursos", Listacursos);
+			this.getServletConfig().getServletContext().getRequestDispatcher("/Catalogo.jsp").forward(request, response);
+			*/
+			
+		}else if (accion!=null && accion.equals("modificar")){
+			
+			Curso CursoMod=BuscarCurso(idInt);
+			request.setAttribute("CursoModificar", CursoMod);
+			request.setAttribute("Listacursos", Listacursos);
+			this.getServletConfig().getServletContext().getRequestDispatcher("/Modificacion.jsp").forward(request, response);
+		}
+			
+		
+		request.setAttribute("Listacursos", Listacursos);
+		this.getServletConfig().getServletContext().getRequestDispatcher("/Catalogo.jsp").forward(request, response);		
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String idcurso="";
+		idcurso=request.getParameter("id");
 		
 		String titulo =request.getParameter("titulo");
 		String descripcion =request.getParameter("descripcion");
@@ -68,8 +98,35 @@ public class ServletCursos extends HttpServlet {
 		Part filePart = request.getPart("imagenuri");
 		String uri= guardarImagen(filePart);
 		
+		//Para poder realizar el descuento
+		String descuento = request.getParameter("descuento");
+		Double tipoDescuento = null;
+		if(descuento.equals("fijo")){
+			tipoDescuento=10.0;
+		}else if(descuento.equals("variable")) {
+			tipoDescuento=precio*0.10;
+		}else if (descuento.equals("ninguno")){
+			tipoDescuento=0.0;
+		}
+		
+		if(idcurso!=null){
+			String id=(String) request.getParameter("id");
+			Integer idInt=0;
+			Curso CursoMod=BuscarCurso(idInt);
+			CursoMod.setDescripcion(descripcion);
+			CursoMod.setDificultad(dificultad);
+			CursoMod.setImagenuri(uri);
+			CursoMod.setNumeroh(numeroh);
+			CursoMod.setPrecio(precio);
+			CursoMod.setTitulo(titulo);
+			CursoMod.setDescuento(tipoDescuento);
+			
+			request.setAttribute("CursoModificar", CursoMod);
+			request.setAttribute("Listacursos", Listacursos);
+			
+		}else{
 		//crea un nuevo curso con los atributos 
-		Curso curso= new Curso();
+		Curso curso= new Curso(titulo, descripcion, dificultad, numeroh, precio, uri, contadorId, tipoDescuento);
 		curso.setId(contadorId);
 		contadorId++;
 		curso.setDescripcion(descripcion);
@@ -78,24 +135,17 @@ public class ServletCursos extends HttpServlet {
 		curso.setNumeroh(numeroh);
 		curso.setPrecio(precio);
 		curso.setTitulo(titulo);
-		//curso.setImagenuri("/home/tiw/fotos/libro.png");
-		
+		curso.setDescuento(tipoDescuento);
+
 		Listacursos.add(curso);
 		
-		request.setAttribute("titulo", titulo);
-		request.setAttribute("descripcion", descripcion);
-		request.setAttribute("precio", precio);
-		request.setAttribute("numeroh", numeroh);
 		request.setAttribute("curso", curso);
-		
-		
+
 		request.setAttribute("Listacursos", Listacursos);
-		
+		}
 		//pinta lo anterior en el jsp catalogo
 		getServletContext().getRequestDispatcher("/Catalogo.jsp").forward(request, response);
-		
-		
-		
+
 	}
 	
 	public static String guardarImagen(Part filePart){
@@ -108,7 +158,7 @@ public class ServletCursos extends HttpServlet {
 		//donde se guardan las imagenes
 		//lo va leyendo del Part y lo guarda en un lugar del disco
 		try {
-			FileOutputStream outputStream = new FileOutputStream("/home/tiw/fotos/" + archivoNombre);
+			FileOutputStream outputStream = new FileOutputStream("images" + archivoNombre);
 			
 			int read = 0;
 			InputStream inputStream =filePart.getInputStream();
@@ -129,8 +179,6 @@ public class ServletCursos extends HttpServlet {
 		return archivoNombre;
 	}
 	
-
-		
 	public static Curso BuscarCurso(int id){
 		int IdCurso2=0;
 		Curso Curso2=null;

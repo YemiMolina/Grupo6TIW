@@ -1,8 +1,12 @@
 package es.uc3m.tiw.web;
 
-//import java.util.ArrayList;
+import java.util.ArrayList;
+
 
 //import java.io.Serializable;
+
+
+
 
 public class Usuario{
 	
@@ -20,7 +24,55 @@ public class Usuario{
 	private long numeroTarjeta;
 	private String expiracion;
 	private int codigoCVC;
-	//public static ArrayList<Cursos> UsuarioCurso = new ArrayList<Cursos>(); 
+	public String imagenuri;
+	public ArrayList<Curso> Listacursos= new ArrayList<Curso>();
+	
+	
+	
+	
+	public boolean AddCurso(Curso curso){
+        boolean encontrado=false;
+        if(UsuarioCurso.size()==0){
+            UsuarioCurso.add(curso);
+        }else{
+            for (Curso curso1: UsuarioCurso){
+                if(curso==curso1){
+                encontrado=true;    
+                }
+            }
+            if(encontrado==false){
+                UsuarioCurso.add(curso);
+            }
+        }
+        return !encontrado;
+    } 
+	
+	
+	public String getImagenuri() {
+		return imagenuri;
+	}
+
+
+
+	public void setImagenuri(String imagenuri) {
+		this.imagenuri = imagenuri;
+	}
+
+
+
+	public ArrayList<Curso> getUsuarioCurso() {
+		return UsuarioCurso;
+	}
+
+
+
+	public  void setUsuarioCurso(ArrayList<Curso> usuarioCurso) {
+		UsuarioCurso = usuarioCurso;
+	}
+
+
+
+	public  ArrayList<Curso> UsuarioCurso = new ArrayList<Curso>(); 
 	
 	
 	public Usuario() {
@@ -31,7 +83,7 @@ public class Usuario{
 
 	public Usuario(String usuario, String clave, String nombre,
 			String apellidos,int edad, int rol, String email, String telefono, String direccion,
-			String descripcion, String intereses,int numeroTarjeta,String expiracion,int codigoCVC) {
+			String descripcion, String intereses,int numeroTarjeta,String expiracion,int codigoCVC, String imagenuri) {
 		//Para cuando quiera meter todos los parametros de una vez
 		super();
 		this.usuario = usuario;
@@ -48,12 +100,14 @@ public class Usuario{
 		this.numeroTarjeta = numeroTarjeta;
 		this.expiracion = expiracion;
 		this.codigoCVC = codigoCVC;
+		this.imagenuri = imagenuri;
 	}
 	
 	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
 
 	}
 

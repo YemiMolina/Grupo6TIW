@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import ="es.uc3m.tiw.web.Usuario" %>
+	<%@page import ="es.uc3m.tiw.web.ServletRegistroUsuario" %>
 <!DOCTYPE html >
 <html>
 
 
 <head>
-<title> Registro Dokulearning</title>
+<title> Modificacion Dokulearning</title>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 
 <!-- Latest compiled and minified CSS-->
@@ -38,6 +40,12 @@
 	<form name="formulario" method="post" class="form-horizontal mitad"
 		action="ServletRegistroUsuario">
 
+
+<% Usuario UsuarioMod =(Usuario) request.getAttribute("UsuarioModificar"); %>
+
+
+
+
 		<div class="container">
 			<div class="row">
 				<!-- You can make it whatever width you want. I'm making it full width
@@ -51,50 +59,44 @@
 
 					<div class="form-group">
 						<label for="usr">Usuario:</label> <input type="text"
-							class="form-control" name="usuario" placeholder="Usuario"
-							required id="usuario">
+							class="form-control"value="<%=UsuarioMod.getUsuario() %>" name="usuario">
 					</div>
 					<div class="form-group">
 						<label for="pwd">Clave</label> <input type="password"
-							class="form-control" name="clave" placeholder="Clave" required
-							id="clave">
+							class="form-control" value="<%=UsuarioMod.getClave() %>" name="clave" >
 					</div>
 
 					<div class="form-group">
 						<label for="name">Nombre</label> <input type="text"
-							class="form-control" name="nombre" placeholder="Nombre" required
-							id="nombre">
+							class="form-control" name="nombre" value="<%=UsuarioMod.getNombre() %>">
 					</div>
 
 					<div class="form-group">
 						<label for="lastname">Apellidos</label> <input type="text"
-							class="form-control" name="apellidos" placeholder="Apellidos"
-							required id="apellidos">
+							class="form-control" name="apellidos" value="<%=UsuarioMod.getApellidos() %>">
 					</div>
 
 					<div class="form-group">
 						<label for="edad">Edad</label> <input type="number"
-							class="form-control" required id="edad" name="edad" min="18"
+							class="form-control" value="<%=UsuarioMod.getEdad() %>"name="edad" min="18"
 							max="120">
 					</div>
 
 					<div class="form-group">
-						<label for="email">Email</label> <input type="email"
-							class="form-control" name="email"
-							placeholder="ejemplo@dominio.com" required id="email">
+						<label for="email">Email</label> <input type="email" name="email"
+						class="form-control"value="<%=UsuarioMod.getEmail() %>">
 					</div>
 
 					<div class="form-group">
 						<label for="tlf">Telefono:</label> <input type="tel"
-							class="form-control" name="telefono" placeholder="Telefono"
-							required id="telefono">
+							class="form-control" name="telefono" value="<%=UsuarioMod.getTelefono() %>">
 					</div>
 
 					<div class="form-group">
 						<label for="Dir">Direcci&oacute;n:</label>
 
-						<textarea rows="3" class="form-control" name="direccion"
-							placeholder="Direcci&oacute;n" required id="direccion"></textarea>
+						<textarea rows="3" name="direccion"
+							class="form-control" value="<%=UsuarioMod.getDireccion() %>"></textarea>
 					</div>
 
 
@@ -102,13 +104,12 @@
 
 					<div class="form-group">
 						<label for="desc">Descripci&oacute;n:</label>
-						<textarea class="form-control" rows="5" name="descripcion"
-							required id="descripcion"></textarea>
+						<textarea value="<%=UsuarioMod.getDescripcion() %>"rows="5" class="form-control"name="descripcion"
+							></textarea>
 					</div>
 					<div class="form-group">
 						<label for="int">Intereses:</label>
-						<textarea class="form-control" rows="5" name="intereses" required
-							id="intereses"></textarea>
+						<textarea rows="5" name="intereses" class="form-control"value="<%=UsuarioMod.getIntereses() %>"></textarea>
 					</div>
 
 					<!-- Metodo de pago-->
@@ -170,7 +171,7 @@
 
 
 
-						<button type="submit" class="btn btn-primary btn-lg btn-block">Registrarse</button>
+						<button type="submit" class="btn btn-primary btn-lg btn-block">Modificar</button>
 
 					</div>
 
