@@ -47,7 +47,7 @@ public class ServletImagenes extends HttpServlet {
                InputStream in;
                in = this.getClass().getResourceAsStream("/icono.jpg");
                response.setContentType("image/jpeg");
-               response.setContentLength(4080);
+               response.setContentLength(24576);
                int i = 0;
                
                OutputStream out = response.getOutputStream();
