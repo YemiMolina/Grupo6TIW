@@ -11,7 +11,7 @@
           </figure>
           <h1 id="titulo">Dokulearning</h1>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-5 hidden-xs" style="float=right">
+        <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12" style="float=right">
           <div id="registroUsuario">
             <form name="formularioUsuario"  method="post" action="ServletLogin">
               <div><p id="usuario"> <span style="color:white">Usuario </span></p> <input class="cuadro"  id="cuadro" type="text" placeholder="Usuario" name="user"></input></div>
@@ -46,10 +46,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="ServletLogin?accion=Index">Home <span class="sr-only">(current)</span></a></li>
-        
         <li><a href="ServletCursos">Cursos</a></li>
-       
-       
+       	<li><a href="ServletLogin?accion=Perfiles">Personas</a></li>
       </ul>
      
       <form class="navbar-form navbar-left" role="search">
@@ -58,7 +56,7 @@
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
-      <ul class="nav navbar-nav navbar-right">
+     <!--  <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sesion <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -71,7 +69,7 @@
             <li><a href="#">Informacion</a></li>
           </ul>
         </li>
-      </ul>
+      </ul> -->
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
   </nav>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="java.util.ArrayList"%>
+    <%@ page import="java.util.List"%>
     <%@ page import="java.util.Iterator"%>
     <%@ page import="es.uc3m.tiw.model.Usuario"%>
     
@@ -8,7 +8,7 @@
 <!DOCTYPE html >
    
 <html>
-<!--Head contenedor del título de la página, enlaces a las stylesheets, tipografías y charset-->
+<!--Head contenedor del tÃ­tulo de la pÃ¡gina, enlaces a las stylesheets, tipografÃ­as y charset-->
 <head>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -43,20 +43,26 @@
 <body>
   <!--Header-->
   	
+ 	<%if (session.getAttribute("usuario") != null) { %>
  	<jsp:include page="HeaderLog.jsp"/>
-	
+	<%}else{%>
+	<jsp:include page="Header.jsp"/>
+	<% } %> 
 <%
-	ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>)request.getAttribute("usuarios");
+	List<Usuario> listaUsuarios = (List<Usuario>)request.getAttribute("usuarios");
 	//Iterator<Curso> iterador = null;
+	
 	
 	for(Usuario usuario: listaUsuarios) {
 		%>
 		<div id="fondoBlanco" style="margin: 5px">
-		<p> Usuario: <%= usuario.getUsuario() %>,	</p>
-		<p> Nombre: <%= usuario.getNombre() %>, Apellido: <%= usuario.getApellidos() %></p>
-		<%-- <a  href="ServletLogin?accion=Perfil2"><input id="botonSubmit" type="submit" value="Ver Perfil"> <% request.setAttribute("usuario", usuario); %></a> --%>
-		</div>
 		
+		<p > Usuario: <%= usuario.getUsuario() %>,	</p>
+		<p> Nombre: <%= usuario.getNombre() %>, Apellido: <%= usuario.getApellidos() %></p>
+	
+		<%-- <a  href="ServletLogin?accion=Perfil2"><input id="botonSubmit" type="submit" value="Ver Perfil"> <% request.setAttribute("usuario", usuario); %></a> --%>
+		
+		</div>
 	<%}%>
 
 
