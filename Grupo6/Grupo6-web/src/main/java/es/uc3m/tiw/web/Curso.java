@@ -11,7 +11,7 @@ public class Curso {
 	private String imagenuri;
 	private int id;
 	private double descuento;
-	public ArrayList<Usuario> ListaUsuarios= new ArrayList<Usuario>();
+	public ArrayList<UsuarioNO> ListaUsuarios= new ArrayList<UsuarioNO>();
 	
 	//Funcion en la que el profesor se queda con el 70% del precio del curso
 	private Double getSalarioProfesor(){
@@ -22,7 +22,7 @@ public class Curso {
 	}
 	
 	
-	public void AddUsuario(Usuario usuario){
+	public void AddUsuario(UsuarioNO usuario){
 		ListaUsuarios.add(usuario);
     } 
 	
@@ -42,12 +42,12 @@ public class Curso {
 	}
 	
 	
-	public ArrayList<Usuario> getListaUsuarios() {
+	public ArrayList<UsuarioNO> getListaUsuarios() {
 		return ListaUsuarios;
 	}
 
 
-	public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
+	public void setListaUsuarios(ArrayList<UsuarioNO> listaUsuarios) {
 		ListaUsuarios = listaUsuarios;
 	}
 

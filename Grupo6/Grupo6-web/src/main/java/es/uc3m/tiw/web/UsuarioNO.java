@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 
 
-public class Usuario{
+public class UsuarioNO{
 	
 	private String usuario;
 	private String clave;
@@ -75,13 +75,13 @@ public class Usuario{
 	public  ArrayList<Curso> UsuarioCurso = new ArrayList<Curso>(); 
 	
 	
-	public Usuario() {
+	public UsuarioNO() {
 		
 	}
 	
 
 
-	public Usuario(String usuario, String clave, String nombre,
+	public UsuarioNO(String usuario, String clave, String nombre,
 			String apellidos,int edad, int rol, String email, String telefono, String direccion,
 			String descripcion, String intereses,int numeroTarjeta,String expiracion,int codigoCVC, String imagenuri) {
 		//Para cuando quiera meter todos los parametros de una vez

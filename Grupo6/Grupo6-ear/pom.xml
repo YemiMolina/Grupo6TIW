@@ -39,10 +39,10 @@
           <groupId>es.uc3m.tiw.ejb</groupId>
             <artifactId>Grupo6-ejb</artifactId>
             </ejbModule> -->
-            <jarmodule>
+            <jarModule>
              <groupId>es.uc3m.tiw.model</groupId>
             <artifactId>Grupo6-model</artifactId>
-            </jarmodule>
+            </jarModule>
             <!-- 4.5.3. Include Web Application Module. -->
             <webModule>
             <groupId>es.uc3m.tiw.web</groupId>

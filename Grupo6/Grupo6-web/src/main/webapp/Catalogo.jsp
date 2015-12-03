@@ -4,7 +4,7 @@
     <%@ page import="java.util.Iterator"%>
     <%@ page import="es.uc3m.tiw.web.Curso"%>
     <%@ page import="es.uc3m.tiw.web.Leccion"%>
-     <%@ page import="es.uc3m.tiw.web.Usuario"%>
+     <%@ page import="es.uc3m.tiw.model.Usuario"%>
      
      <%@ page import="es.uc3m.tiw.web.ServletSession"%>
     <%@ page import="javax.servlet.ServletException"%>

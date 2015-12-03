@@ -36,7 +36,7 @@ public class ServletPago extends HttpServlet {
         Curso encontrado= ServletCursos.BuscarCurso(idint);
        
         HttpSession session = request.getSession();
-        Usuario usuActual= (Usuario)session.getAttribute("usuario"); 
+        UsuarioNO usuActual= (UsuarioNO)session.getAttribute("usuario"); 
         //Busco en usuario actual
         
         /*//iniar la sesion y meto el objeto que quiera

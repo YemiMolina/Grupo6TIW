@@ -37,7 +37,7 @@ public class ServletMisCursos extends HttpServlet {
                 int idint= Integer.parseInt(id);
                 Curso encontrado= ServletCursos.BuscarCurso(idint);
                 
-                Usuario usuActual= (Usuario)session.getAttribute("usuario"); //Busco en usuario actual
+                UsuarioNO usuActual= (UsuarioNO)session.getAttribute("usuario"); //Busco en usuario actual
                 
                 /*//iniar la sesion y meto el objeto que quiera
                 request.getSession().setAttribute("usuarioActual", usuActual);

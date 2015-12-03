@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.util.ArrayList"%>
     <%@ page import="java.util.Iterator"%>
-    <%@ page import="es.uc3m.tiw.web.Usuario"%>
+    <%@ page import="es.uc3m.tiw.model.Usuario"%>
     
     
 <!DOCTYPE html >
