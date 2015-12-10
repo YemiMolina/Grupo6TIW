@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="java.util.ArrayList"%>
-    <%@ page import="es.uc3m.tiw.web.Leccion"%>
-    <%@ page import="es.uc3m.tiw.web.Curso"%>
-    <%@ page import="es.uc3m.tiw.web.ServletCursos"%>
+    <%@ page import="java.util.List"%>
+    <%@ page import="es.uc3m.tiw.model.Leccion"%>
+    <%@ page import="es.uc3m.tiw.model.Curso"%>
+    <%@ page import="es.uc3m.tiw.web.PersistenceServletCursos"%>
+        <%@ page import="es.uc3m.tiw.web.ServletLecciones"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,20 +35,49 @@
   <META HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 
-<jsp:include page="HeaderLog.jsp"/>
+<%-- <jsp:include page="HeaderLog.jsp"/> --%>
 
 <body id="body">
 
 	<div id="fondoBlanco">
-            <ul>
+	
+	<ul>
+				<%
+				String id =request.getParameter("id");
+				int idCurso= Integer.parseInt(id);
+
+					if (request.getAttribute("Listalecciones")!= null) {
+						List<Leccion> ListaLecciones = (List<Leccion>) request.getAttribute("Listalecciones");
+						int contador = 0;
+						for (Leccion leccion : ListaLecciones) {
+				%>
+				<li><%=leccion.getDescripcion()%> 
+				<a href="ServletImagenes?foto=<%=leccion.getMaterial() %>">Material de la leccion</a><br><br>
+				</li>
+
+				<%
+					contador++;
+				%>
+				<a href="ServletLecciones?action=delete&id=<%=leccion.getIdentificador()%>" >Eliminar leccion </a></li>
+
+				<%
+				
+					}
+					}
+				%>
+
+			</ul>
+	
+	
+            <%-- <ul>
             <%
                 String id = request.getParameter("id");
-                System.out.println("que hay en id curos"+ id);
-                Curso curso= ServletCursos.BuscarCurso(Integer.parseInt(id));
-                if(curso.getListaLecciones()!=null){
-                    ArrayList<Leccion> ListaLecciones2 =curso.getListaLecciones();
+               List <Leccion> listaLecciones=(List<Leccion>) request.getAttribute("ListaLecciones");
+                //Curso curso= ServletCursos.BuscarCurso(Integer.parseInt(id));
+                if(listaLecciones!=null){
+                    
                     int contador = 0;
-                    for (Leccion leccion : ListaLecciones2) {
+                    for (Leccion leccion : listaLecciones) {
                         System.out.println("que hay en identificador de leccion"+ leccion.getIdentificador());
                         contador=leccion.getIdentificador();
             %>
@@ -67,8 +97,8 @@
             
                 
 
-            </ul>
-            <a href="ServletCursos?id=<%=request.getParameter("id")%>">
+            </ul> --%>
+            <a href="PersistenceServletCursos?id=<%=request.getParameter("id")%>">
                     Ir al listado de Cursos </a>
        </div>       
            <!--Pie de página-->

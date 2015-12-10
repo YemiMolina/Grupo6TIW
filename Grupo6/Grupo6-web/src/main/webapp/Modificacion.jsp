@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="es.uc3m.tiw.web.Curso"%>
-    <%@ page import="es.uc3m.tiw.web.ServletCursos"%>
+    <%@ page import="es.uc3m.tiw.web.PersistenceServletCursos"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form action="ServletCursos" enctype="multipart/form-data" method="post">
+<form action="PersistenceServletCursos" enctype="multipart/form-data" method="post">
    
     <hr>
     <fieldset>

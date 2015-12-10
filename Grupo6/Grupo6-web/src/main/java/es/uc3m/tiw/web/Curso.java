@@ -11,21 +11,15 @@ public class Curso {
 	private String imagenuri;
 	private int id;
 	private double descuento;
-	public ArrayList<UsuarioNO> ListaUsuarios= new ArrayList<UsuarioNO>();
-	
-	//Funcion en la que el profesor se queda con el 70% del precio del curso
-	private Double getSalarioProfesor(){
-	double Salario= getPrecioFinal()*0.70;
-	int numeroUsuarios=ListaUsuarios.size();
-	double salarioTotal=numeroUsuarios*Salario;
-	return salarioTotal;
-	}
-	
-	
-	public void AddUsuario(UsuarioNO usuario){
-		ListaUsuarios.add(usuario);
-    } 
-	
+	private boolean validado=false;// la validacion es falsa por deecto
+	private boolean destacado=false; // un curso no sera destacado por defecto
+	private double comisionPortal=0.3;
+	private double comisionProfesor=0.7;
+	private double dineroPortal;
+	private double dineroProfe;
+	private Leccion leccion;
+	private ArrayList<Leccion> ListaLecciones= new ArrayList <Leccion>();
+	public ArrayList<Usuario> ListaUsuarios= new ArrayList<Usuario>();
 	
 	public Curso(String titulo, String descripcion, String dificultad,
 			int numeroh, double precio, String imagenuri, int id, double descuento) {
@@ -41,21 +35,22 @@ public class Curso {
 		this.descuento = descuento;
 	}
 	
+	public Curso (String titulo, String descripcion, String dificultad, int numeroh, double precio,int id, double descuento){
+		this.titulo=titulo;
+		this.descripcion=descripcion;
+		this.dificultad=dificultad;
+		this.numeroh=numeroh;
+		this.precio=precio;
+		this.descuento=descuento;
+		this.id=id;
+	}
+	public Curso(){
+		
+	}
 	
-	public ArrayList<UsuarioNO> getListaUsuarios() {
-		return ListaUsuarios;
-	}
-
-
-	public void setListaUsuarios(ArrayList<UsuarioNO> listaUsuarios) {
-		ListaUsuarios = listaUsuarios;
-	}
-
-
 	public double getPrecioFinal(){
 		return precio-descuento;
 	}
-	
 	
 	public double getDescuento() {
 		return descuento;
@@ -69,7 +64,7 @@ public class Curso {
 	public void setId(int id) {
 		this.id = id;
 	}
-	private ArrayList<Leccion> ListaLecciones= new ArrayList <Leccion>();
+	
 	
 	
 	public ArrayList<Leccion> getListaLecciones() {
@@ -115,6 +110,67 @@ public class Curso {
 		this.precio = precio;
 	}
 	
+	public boolean getValidacion() {
+		return validado;
+	}
+	public void setValidacion(boolean validar) {
+		this.validado = validar;
+	}
+	public boolean getDestacado() {
+		return destacado;
+	}
+	public void setDestacado(boolean destacado) {
+		this.destacado = destacado;
+	}
+	public double getComisionPortal() {
+		return comisionPortal;
+	}
+	public void setComisionPortal(double comision) {
+		this.comisionPortal = comision;
+	}
+	public double getComisionProfesor() {
+		return comisionProfesor;
+	}
+	public void setComisionProfesor(double comision) {
+		this.comisionProfesor = comision;
+	}
+	public double getDineroProfesor() {
+		return dineroProfe;
+	}
+	public void setDienroProfesor(double dinero) {
+		this.dineroProfe = dinero;
+	}
+	public double getDineroPortal() {
+		return dineroPortal;
+	}
+	public void setDienroPortal(double dinero) {
+		this.dineroPortal = dinero;
+	}
+	//Funcion en la que el profesor se queda con el 70% del precio del curso
+		public Double getSalarioProfesor(){
+		double Salario= getPrecioFinal()*0.70;
+		int numeroUsuarios=ListaUsuarios.size();
+		double salarioTotal=numeroUsuarios*Salario;
+		setDienroProfesor(salarioTotal);
+		return salarioTotal;
+		}
+		public void AddUsuario(Usuario usuario){
+			ListaUsuarios.add(usuario);
+	    } 
+		
+		public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
+			ListaUsuarios = listaUsuarios;
+		}
+		
+		public ArrayList<Usuario> getListaUsuario(){
+			return ListaUsuarios;
+	    } 
+		public void setLeccion(Leccion leccion){
+			this.leccion=leccion;
+		}
+		public Leccion getLeccion(){
+			return leccion;
+		}
 	
 	
 

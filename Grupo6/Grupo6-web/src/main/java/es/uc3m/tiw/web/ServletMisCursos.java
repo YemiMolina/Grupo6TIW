@@ -37,14 +37,14 @@ public class ServletMisCursos extends HttpServlet {
                 int idint= Integer.parseInt(id);
                 Curso encontrado= ServletCursos.BuscarCurso(idint);
                 
-                UsuarioNO usuActual= (UsuarioNO)session.getAttribute("usuario"); //Busco en usuario actual
+                Usuario usuActual= (Usuario)session.getAttribute("usuario"); //Busco en usuario actual
                 
                 /*//iniar la sesion y meto el objeto que quiera
                 request.getSession().setAttribute("usuarioActual", usuActual);
                 //Aqui meto la info del obj usuario y ya puedo acceder a el y obtener lo que quiera
                 Usuario usuActual2= (Usuario) request.getSession().getAttribute("usuarioActual");*/
                 
-                boolean ExitoAniadir= usuActual.AddCurso(encontrado);
+                boolean ExitoAniadir= Usuario.AddCurso(encontrado);
                 
                 ArrayList<Curso> CursosMatriculados = new ArrayList<Curso>();
                 CursosMatriculados=usuActual.getUsuarioCurso();

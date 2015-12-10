@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
 <%@ page import="java.util.Iterator"%>
-<%@ page import="es.uc3m.tiw.web.Leccion"%>
+<%@ page import="es.uc3m.tiw.model.Leccion"%>
 <!DOCTYPE html >
    
 <html>
-<!--Head contenedor del título de la página, enlaces a las stylesheets, tipografías y charset-->
+<!--Head contenedor del tÃ­tulo de la pÃ¡gina, enlaces a las stylesheets, tipografÃ­as y charset-->
 <head>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -37,10 +37,12 @@
 
 <body>
   <!--Header-->
-  	<%if (session.getAttribute("usuario") != null) { %>
- 	<jsp:include page="HeaderLog.jsp"/>
+  	<%
+  
+  	if (session.getAttribute("usuario") != null) { %>
+ 	<jsp:include page="HeaderLog.jsp"/> 
 	<%}else{%>
-	<jsp:include page="Header.jsp"/>
+	 <jsp:include page="Header.jsp"/> 
 	<% } %>
 	
 	<div id="fondoBlanco" >
@@ -73,33 +75,32 @@
 			<ul>
 				<%
 					if (request.getAttribute("Listalecciones") != null) {
-						ArrayList<Leccion> ListaLecciones = (ArrayList<Leccion>) request.getAttribute("Listalecciones");
+						List<Leccion> ListaLecciones = (List<Leccion>) request.getAttribute("Listalecciones");
 						int contador = 0;
 						for (Leccion leccion : ListaLecciones) {
 				%>
 				<li><%=leccion.getDescripcion()%> 
 				<a href="ServletImagenes?foto=<%=leccion.getMaterial() %>">Material de la leccion</a><br><br>
 				</li>
-
-				
-
 				<%
 					contador++;
 				%>
+				<a href="ServletLecciones?action=delete&identificador=<%=request.getParameter("identificador")%>" >Eliminar leccion </a></li>
+				
 				<%
 					}
 					}
 				%>
 				<a href="CatalogoLecciones.jsp?id=<%=request.getParameter("id")%>">
-					Añadir otra Leccion al curso </a>
+					AÃ±adir otra Leccion al curso </a>
 
 			</ul>
 
-			<a href="ServletCursos" > Volver a los Cursos</a><br>	
+			<a href="PersistenceServletCursos" > Volver a los Cursos</a><br>	
 			</fieldset>
 	</form>
 </div>
-    <!--Pie de página-->
+    <!--Pie de pÃ¡gina-->
 	<%@include file="Footer.jsp"%>
 
 </body>

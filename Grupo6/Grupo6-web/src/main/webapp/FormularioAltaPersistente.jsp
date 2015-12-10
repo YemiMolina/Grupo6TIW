@@ -16,7 +16,7 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  <title>Dokulearning| Formulario de Alta</title>
+  <title>LearnIt | Home</title>
   <meta name="Author" content="Grupo de practicas TIW" lang="es">
   <link rel="icon" type="image/png" href="./images/icono.jpg"> 
 
@@ -37,7 +37,7 @@
 
 <div id="fondoBlanco" >
 <p> <strong>Formulario para dar de alta los cursos a la plataforma Dokulearning</strong></p>
-<form action="PersistenceServletCursos" enctype="multipart/form-data" method="post">
+<form action="/usuario" enctype="multipart/form-data" method="post">
     <hr>
     <fieldset>
     <legend> Alta de curso 

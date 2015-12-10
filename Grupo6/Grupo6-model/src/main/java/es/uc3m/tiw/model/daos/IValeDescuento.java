@@ -1,9 +1,6 @@
-
 package es.uc3m.tiw.model.daos;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 import javax.transaction.HeuristicMixedException;
@@ -12,24 +9,25 @@ import javax.transaction.NotSupportedException;
 import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 
-import es.uc3m.tiw.model.Usuario;
+import es.uc3m.tiw.model.Leccion;
+import es.uc3m.tiw.model.Vale;
 
-public interface IUsuario {
-
-	public abstract Usuario createUsuario(Usuario usuarioNuevo)
+public  interface IValeDescuento {
+	
+	public abstract Vale createVale(Vale ValeNuevo)
 			throws InstantiationException, IllegalAccessException,
 			ClassNotFoundException, SQLException, NotSupportedException, SystemException, IllegalStateException, SecurityException, HeuristicMixedException, HeuristicRollbackException, RollbackException;
 
-	public abstract Usuario update(Usuario usuario);
-	
-	public abstract List<Usuario> findAll() throws InstantiationException,
+	public abstract List<Vale> findAll() throws InstantiationException,
 			IllegalAccessException, ClassNotFoundException, SQLException;
 
-	public abstract Usuario findById(int id) throws SQLException;
+	public abstract Vale findById(int id) throws SQLException;
 
-	public abstract void removeUsuario(Usuario usuario)
+	public abstract void removeLeccion(Vale vale)
 			throws NotSupportedException, SystemException,
 			IllegalStateException, SecurityException, HeuristicMixedException,
 			HeuristicRollbackException, RollbackException;
+
+	public abstract List<Vale> BuscarValesProfesor(int id);
 
 }

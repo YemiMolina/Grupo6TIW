@@ -2,8 +2,7 @@
 package es.uc3m.tiw.model;
 
 import java.util.ArrayList;
-
-//import javax.persistence.Entity;
+import java.util.Collection;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,9 +14,15 @@ import static javax.persistence.CascadeType.ALL;
 
 @Entity
 @Table(name="usuario")
-public class Usuario {
+@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
+public class Usuario implements Serializable {
+
 	
-		@Id
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = AUTO)
+		private Integer idusuarios;
 		private String usuario;	
 		private String clave;
 		private String nombre;
@@ -35,6 +40,37 @@ public class Usuario {
 		//public String imagenuri;
 		//public ArrayList<Curso> Listacursos= new ArrayList<Curso>();
 		
+			@ManyToMany
+			private List <Curso> ListaCursosAlumno =new ArrayList <Curso>();
+			
+			@OneToMany(mappedBy="Profesor")
+			private List <Curso> ListaCursosProfesor =new ArrayList <Curso>();
+
+			public List<Curso> getListaCursosAlumno() {
+				return ListaCursosAlumno;
+			}
+
+			public void setListaCursosAlumno(List<Curso> listaCursosAlumno) {
+				ListaCursosAlumno = listaCursosAlumno;
+			}
+			
+
+			public List<Curso> getListaCursosProfesor() {
+				return ListaCursosProfesor;
+			}
+
+			public void setListaCursosProfesor(List<Curso> listaCursosProfesor) {
+				ListaCursosProfesor = listaCursosProfesor;
+			}
+			
+			
+			/*public static List<Curso> Matricular (Curso curso){ //le paso el id del curso
+				//tengo su lista de cursos
+				List <Curso> ListaCursos =new ArrayList <Curso>();
+				//Se lo añado
+				 ListaCursos.add(curso);
+				return ListaCursos;
+			}*/
 
 /*@Id
 @GeneratedValue(strategy = AUTO)
@@ -102,11 +138,12 @@ private Direccion direcc*/
 			
 		}
 
-		public Usuario(String usuario, String clave, String nombre,
+		public Usuario(int idusuarios, String usuario, String clave, String nombre,
 				String apellidos,int edad, int rol, String email, String telefono, String direccion,
 				String descripcion, String intereses,int numeroTarjeta,String expiracion,int codigoCVC, String imagenuri) {
 			//Para cuando quiera meter todos los parametros de una vez
 			super();
+			this.idusuarios = idusuarios;
 			this.usuario = usuario;
 			this.clave = clave;
 			this.nombre = nombre;
@@ -133,6 +170,17 @@ private Direccion direcc*/
 		}
 
 
+		public int getIdusuarios() {
+			return idusuarios;
+		}
+
+
+
+		public void setIdusuarios(int idusuarios) {
+			this.idusuarios = idusuarios;
+		}
+		
+		
 		public String getUsuario() {
 			return usuario;
 		}

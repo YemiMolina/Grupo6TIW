@@ -3,8 +3,13 @@
 	<persistence-unit name="Grupo6-model">
 		<jta-data-source>jdbc/tiw</jta-data-source>
 		<class>es.uc3m.tiw.model.Usuario</class>
+		<class>es.uc3m.tiw.model.Curso</class>
+		<class>es.uc3m.tiw.model.Direccion</class>
+		<class>es.uc3m.tiw.model.Leccion</class>
+		<class>es.uc3m.tiw.model.Persona</class>
+		<class>es.uc3m.tiw.model.Vale</class>
 		<properties>
-			<property name="javax.persistence.schema-generation.database.action" value="update"/>
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 		</properties>
 	</persistence-unit>
 </persistence>

@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -31,25 +32,26 @@ public class ServletCursos extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-	public void init() throws ServletException {
-		
-		Curso curso1 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
-		/*Curso curso2 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
-		Curso curso3 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
-		Curso curso4 = new Curso("Curso avanzado de HTML5", "Curso avanzado de html5 en el que se perfeccionaran las tecnicas en la creacion de paginas web", "Basico", 7, 700, "", 1, 10);
-		*/
-		Listacursos.add(curso1);
-		//Listacursos.add(curso2);
-		//Listacursos.add(curso3);
-		//Listacursos.add(curso4);
-		
-	}
-    
     public ServletCursos() {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    /*private String titulo;
+	private String descripcion;
+	private String dificultad;
+	private int numeroh;
+	private double precio;
+	private String imagenuri;
+	private int id;
+	private double descuento;*/
+    public void init(ServletConfig config) throws ServletException {
+        // Always call super.init(config) first  (servlet mantra #1)
+        super.init(config);
+        Curso curso1= new Curso("curso1","descripcion1","dificultad1", 1, 20,130,10.0);
+        Curso curso2= new Curso("curso2","descripcion2","dificultad2", 2, 20,131,10.0);
+        Listacursos.add(curso1);
+        Listacursos.add(curso2);
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -58,17 +60,11 @@ public class ServletCursos extends HttpServlet {
 	String accion=(String) request.getParameter("action");
 	String id=(String) request.getParameter("id");
 	Integer idInt=0;
-	
 	if(id!=null){
 	idInt= Integer.valueOf(id);
 	}
 		if(accion!=null && accion.equals("delete")){
 			Listacursos.remove(idInt.intValue());	
-		
-			/*request.setAttribute("Listacursos", Listacursos);
-			this.getServletConfig().getServletContext().getRequestDispatcher("/Catalogo.jsp").forward(request, response);
-			*/
-			
 		}else if (accion!=null && accion.equals("modificar")){
 			
 			Curso CursoMod=BuscarCurso(idInt);
@@ -76,11 +72,10 @@ public class ServletCursos extends HttpServlet {
 			request.setAttribute("Listacursos", Listacursos);
 			this.getServletConfig().getServletContext().getRequestDispatcher("/Modificacion.jsp").forward(request, response);
 		}
-			
-		
 		request.setAttribute("Listacursos", Listacursos);
-		this.getServletConfig().getServletContext().getRequestDispatcher("/Catalogo.jsp").forward(request, response);		
-}
+		this.getServletConfig().getServletContext().getRequestDispatcher("/Catalogo.jsp").forward(request, response);
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -145,7 +140,7 @@ public class ServletCursos extends HttpServlet {
 		}
 		//pinta lo anterior en el jsp catalogo
 		getServletContext().getRequestDispatcher("/Catalogo.jsp").forward(request, response);
-
+		
 	}
 	
 	public static String guardarImagen(Part filePart){
@@ -158,7 +153,7 @@ public class ServletCursos extends HttpServlet {
 		//donde se guardan las imagenes
 		//lo va leyendo del Part y lo guarda en un lugar del disco
 		try {
-			FileOutputStream outputStream = new FileOutputStream("images" + archivoNombre);
+			FileOutputStream outputStream = new FileOutputStream("/home/tiw/fotos/" + archivoNombre);
 			
 			int read = 0;
 			InputStream inputStream =filePart.getInputStream();
@@ -190,5 +185,10 @@ public class ServletCursos extends HttpServlet {
 			}
 		}
 	return Curso2;	
+	}
+	
+	public ArrayList <Curso> getListaCursos(){// solo quiero que me devuelva la lista de cursos
+		
+		return Listacursos;
 	}
 }

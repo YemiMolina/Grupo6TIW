@@ -1,4 +1,3 @@
-
 package es.uc3m.tiw.model.daos;
 
 import java.sql.ResultSet;
@@ -14,14 +13,12 @@ import javax.transaction.SystemException;
 
 import es.uc3m.tiw.model.Usuario;
 
-public interface IUsuario {
+public interface IPersona {
 
 	public abstract Usuario createUsuario(Usuario usuarioNuevo)
 			throws InstantiationException, IllegalAccessException,
 			ClassNotFoundException, SQLException, NotSupportedException, SystemException, IllegalStateException, SecurityException, HeuristicMixedException, HeuristicRollbackException, RollbackException;
 
-	public abstract Usuario update(Usuario usuario);
-	
 	public abstract List<Usuario> findAll() throws InstantiationException,
 			IllegalAccessException, ClassNotFoundException, SQLException;
 

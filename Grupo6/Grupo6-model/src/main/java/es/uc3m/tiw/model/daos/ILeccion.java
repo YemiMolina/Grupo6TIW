@@ -1,4 +1,3 @@
-
 package es.uc3m.tiw.model.daos;
 
 import java.sql.ResultSet;
@@ -13,23 +12,25 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 
 import es.uc3m.tiw.model.Usuario;
+import es.uc3m.tiw.model.Curso;
+import es.uc3m.tiw.model.Leccion;
 
-public interface IUsuario {
-
-	public abstract Usuario createUsuario(Usuario usuarioNuevo)
+public interface ILeccion {
+	
+	public abstract Leccion createLeccion(Leccion leccionNuevo)
 			throws InstantiationException, IllegalAccessException,
 			ClassNotFoundException, SQLException, NotSupportedException, SystemException, IllegalStateException, SecurityException, HeuristicMixedException, HeuristicRollbackException, RollbackException;
 
-	public abstract Usuario update(Usuario usuario);
-	
-	public abstract List<Usuario> findAll() throws InstantiationException,
+	public abstract List<Leccion> findAll() throws InstantiationException,
 			IllegalAccessException, ClassNotFoundException, SQLException;
 
-	public abstract Usuario findById(int id) throws SQLException;
+	public abstract Leccion findById(int id) throws SQLException;
 
-	public abstract void removeUsuario(Usuario usuario)
+	public abstract void removeLeccion(Leccion leccion)
 			throws NotSupportedException, SystemException,
 			IllegalStateException, SecurityException, HeuristicMixedException,
 			HeuristicRollbackException, RollbackException;
+
+	public abstract List<Leccion> BuscarLeccionCurso(int idCursoUrl1);
 
 }

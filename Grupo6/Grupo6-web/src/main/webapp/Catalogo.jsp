@@ -1,12 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="java.util.ArrayList"%>
+    <%@ page import="java.util.List"%>
     <%@ page import="java.util.Iterator"%>
-    <%@ page import="es.uc3m.tiw.web.Curso"%>
-    <%@ page import="es.uc3m.tiw.web.Leccion"%>
-     <%@ page import="es.uc3m.tiw.model.Usuario"%>
+    <%@ page import="es.uc3m.tiw.model.Curso"%>
+    <%@ page import="es.uc3m.tiw.model.Leccion"%>
+    <%@ page import="es.uc3m.tiw.model.daos.ILeccion"%>
+    <%@ page import="es.uc3m.tiw.model.daos.LeccionDao"%>
+    <%@ page import="es.uc3m.tiw.model.Usuario"%>
      
-     <%@ page import="es.uc3m.tiw.web.ServletSession"%>
+    <%@ page import="es.uc3m.tiw.web.ServletSession"%>
     <%@ page import="javax.servlet.ServletException"%>
     <%@ page import="javax.servlet.annotation.WebServlet"%>
     <%@ page import="javax.servlet.http.HttpServlet"%>
@@ -17,7 +19,7 @@
 <!DOCTYPE html >
    
 <html>
-<!--Head contenedor del tÃ­tulo de la pÃ¡gina, enlaces a las stylesheets, tipografÃ­as y charset-->
+<!--Head contenedor del título de la página, enlaces a las stylesheets, tipografías y charset-->
 <head>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -62,7 +64,7 @@
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
     <div id="parametros">
-      <br><h3 class="titulosPar">ConfiguraciÃ³n</h3>
+      <br><h3 class="titulosPar">Configuración</h3>
       <h4 class="titulosPar">Tipo de dificultad</h4>
       <p class="datosPar">Basico</p>
       <input class="check" type="checkbox" id="basico" name="Basico" value="Basico" onchange="check()" checked>
@@ -79,55 +81,51 @@
     <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
 
 <%
-	ArrayList<Curso> Listacursos = (ArrayList<Curso>)request.getAttribute("Listacursos");
+	List<Curso> Listacursos = (List<Curso>) request.getAttribute("Listacursos");
 	//Iterator<Curso> iterador = null;
 	int contador=0;
 	for(Curso curso: Listacursos) {
+		
 		%>
 		<div id="fondoBlanco" style="margin: 5px">
-		<%=curso.getTitulo() %> <br>
+		
+		<li><%=curso.getTitulo() %> <br>
 		<%=curso.getDescripcion() %> <br>
+		<%=curso.getIdcursos() %> <br>
 		El precio inicial es:<%=curso.getPrecio()%><br>
 		El precio final es: <%=curso.getPrecioFinal()%> <br>
 		<br><br>
 
 		 <img src="ServletImagenes?foto=<%=curso.getImagenuri()%>"> <br><br>
 		 
-		 <a href="ServletLecciones?id=<%=curso.getId()%>" > Ver sus Lecciones </a></li><br>
-		 <a href="Matriculacion.jsp?id=<%=curso.getId()%>&precioFinal=<%=curso.getPrecioFinal()%>" > Matricularse en este curso </a></li> <br>
-		  
-		  <%if (session.getAttribute("usuario") != null) { 
-			Usuario log = (Usuario)session.getAttribute("usuario");	
-			if( log.getRol() != 1 ){ %>
-				<a href="CatalogoLecciones.jsp?id=<%=curso.getId()%>" > AÃ±adir Leccion </a></li> <br>
-		  		<a href="ServletCursos?action=modificar&id=<%=curso.getId()%>" > Modificar Curso </a></li><br>
-		 		<a href="ServletCursos?action=delete&id=<%=contador%>" >Eliminar curso </a></li>	
-			<%} %>
-		<%} %>
-		  
 		
+		 <a href="ServletLecciones?id=<%=curso.getIdcursos()%>" > Ver sus Lecciones </a></li><br>
+		 <a href="ServletPago?id=<%=curso.getIdcursos()%>" > Matricularse en este curso </a></li> <br>
+			<%//if (session.getAttribute("usuario") != null) { 
+			//Usuario log = (Usuario)session.getAttribute("usuario");	
+			//if( log.getRol() != 1 ){ %>
+				<a href="CatalogoLecciones.jsp?id=<%=curso.getIdcursos()%>" > Añadir Leccion </a></li> <br>
+		  		<a href="PersistenceServletCursos?action=modificar&id=<%=curso.getIdcursos()%>" > Modificar Curso </a></li><br>
+		 		<a href="PersistenceServletCursos?action=delete&id=<%=contador%>" >Eliminar curso </a></li>	
+			<%//} %>
+		<%//} %>
+			  	
 		</div>
 		<%contador++; %>
-		<%
-	}
-	
-		%>
-		</div>
-		</div>
-
+	<%} %>
+	</div>
+	</div>
 
 		<br>
 		
-		<%if (session.getAttribute("usuario") != null) { 
-			Usuario log = (Usuario)session.getAttribute("usuario");	
-			if( log.getRol() != 1 ){ %>
+		<%//if (session.getAttribute("usuario") != null) { 
+			//Usuario log = (Usuario)session.getAttribute("usuario");	
+			//if( log.getRol() != 1 ){ %>
 				<a href="FormularioAlta.jsp" ><input id="" type="submit" value="Dar de alta otro curso"></a>	
-			<%} %>
-		<%} %>
+			<%//} %>
+		<%//} %>
+
 </div>
-
-
-
 <%@include file="Footer.jsp"%>	
 </body>
 </html>
