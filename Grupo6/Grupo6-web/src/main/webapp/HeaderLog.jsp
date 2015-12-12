@@ -51,7 +51,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="ServletLogin?accion=Index">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="ServletLogin?accion=Perfil">Perfil</a></li>
-        <li><a href="ServletCursos">Cursos</a></li>
+        <li><a href="PersistenceServletCursos">Cursos</a></li>
         <li><a href="ServletLogin?accion=Perfiles">Personas</a></li>
       </ul>
      <form class="navbar-form navbar-left" role="search">

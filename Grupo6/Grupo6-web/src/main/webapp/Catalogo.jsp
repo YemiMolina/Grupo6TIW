@@ -6,6 +6,8 @@
     <%@ page import="es.uc3m.tiw.model.Leccion"%>
     <%@ page import="es.uc3m.tiw.model.daos.ILeccion"%>
     <%@ page import="es.uc3m.tiw.model.daos.LeccionDao"%>
+    <%@ page import="es.uc3m.tiw.model.daos.ICurso"%>
+    <%@ page import="es.uc3m.tiw.model.daos.CursoDao"%>
     <%@ page import="es.uc3m.tiw.model.Usuario"%>
      
     <%@ page import="es.uc3m.tiw.web.ServletSession"%>
@@ -106,7 +108,7 @@
 			//if( log.getRol() != 1 ){ %>
 				<a href="CatalogoLecciones.jsp?id=<%=curso.getIdcursos()%>" > Añadir Leccion </a></li> <br>
 		  		<a href="PersistenceServletCursos?action=modificar&id=<%=curso.getIdcursos()%>" > Modificar Curso </a></li><br>
-		 		<a href="PersistenceServletCursos?action=delete&id=<%=contador%>" >Eliminar curso </a></li>	
+		 		<a href="PersistenceServletCursos?action=delete&id=<%=curso.getIdcursos()%>" >Eliminar curso </a></li>	
 			<%//} %>
 		<%//} %>
 			  	
