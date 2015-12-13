@@ -52,6 +52,7 @@
 		<fieldset>
 			<%
 				String id = request.getParameter("id");
+			String identificador=request.getParameter("identificador");
 			%>
 			<input type="hidden" name="id" value="<%=id%>" />
 

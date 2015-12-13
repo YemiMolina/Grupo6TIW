@@ -101,7 +101,7 @@
 		 <img src="ServletImagenes?foto=<%=curso.getImagenuri()%>"> <br><br>
 		 
 		
-		 <a href="ServletLecciones?id=<%=curso.getIdcursos()%>" > Ver sus Lecciones </a></li><br>
+		 <a href="ServletLecciones?action=mostrar&id=<%=curso.getIdcursos()%>" > Ver sus Lecciones </a></li><br>
 		 <a href="ServletPago?id=<%=curso.getIdcursos()%>" > Matricularse en este curso </a></li> <br>
 			<%//if (session.getAttribute("usuario") != null) { 
 			//Usuario log = (Usuario)session.getAttribute("usuario");	

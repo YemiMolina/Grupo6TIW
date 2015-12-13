@@ -116,9 +116,10 @@ public class ServletLecciones extends HttpServlet {
 			}
 			int curso =leccionencontrada.getCurso().getIdcursos();
 
-			List<Leccion> encontrada = dao.BuscarLeccionCurso(curso);// buscas la leccion con ese id
+			List<Leccion> encontrada = dao.BuscarLeccionCurso(curso);// buscas las lecciones con ese id del curso
 																		
 			request.setAttribute("Listalecciones", encontrada);
+			request.setAttribute("identificador", idLeccion);
 			// Si se quiere borrar la leccion
 
 			this.getServletConfig().getServletContext()
