@@ -86,14 +86,12 @@
 				<%
 					contador++;
 				%>
-				<a href="ServletLecciones?action=delete&identificador=<%=request.getParameter("identificador")%>" >Eliminar leccion </a></li>
-				
 				<%
 					}
 					}
 				%>
 				<a href="CatalogoLecciones.jsp?id=<%=request.getParameter("id")%>">
-					AÃ±adir otra Leccion al curso </a>
+					Añadir otra Leccion al curso </a>
 
 			</ul>
 
