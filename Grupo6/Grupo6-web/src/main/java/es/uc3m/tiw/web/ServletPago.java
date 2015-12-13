@@ -98,7 +98,7 @@ public class ServletPago extends HttpServlet {
        // encontrado.matricular(usuActual);
        //CursosMatriculados= Usuario.Matricular(encontrado);
         
-        CursosMatriculados= usuActual1.getListaCursosProfesor();
+        CursosMatriculados= usuActual1.getListaCursosAlumno();
         CursosMatriculados.add(encontrado);
         daou.update(usuActual1);
         request.setAttribute("CursosMatriculados", CursosMatriculados);
