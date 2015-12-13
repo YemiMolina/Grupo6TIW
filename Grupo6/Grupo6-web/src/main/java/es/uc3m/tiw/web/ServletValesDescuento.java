@@ -81,103 +81,93 @@ public class ServletValesDescuento extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       String nombre =request.getParameter("nombre");
-       long cantidad=Long.parseLong(request.getParameter("cantidad"));
-       Integer numeroCursosinscrito=Integer.parseInt(request.getParameter("numeroCursosinscrito"));
-       double numeroMinMatricula= Double.parseDouble(request.getParameter("numeroMinMatricula"));
-       String FechaMaximaStr= request.getParameter("FechaMaxima"); 
-       Date FechaMaxima=null;
-       try {
-    	   FechaMaxima = new SimpleDateFormat("dd/MM/yyyy").parse(FechaMaximaStr);
-   	} catch (ParseException e1) {
-   		// TODO Auto-generated catch block
-   		e1.printStackTrace();
-   	}
+        String nombre =request.getParameter("nombre");
+        long cantidad=Long.parseLong(request.getParameter("cantidad"));
+        Integer numeroCursosinscrito=Integer.parseInt(request.getParameter("numeroCursosinscrito"));
+        double numeroMinMatricula= Double.parseDouble(request.getParameter("numeroMinMatricula"));
+        String FechaCaducidadSrt= request.getParameter("fechaCaducidad");
+        Date FechaCaducidad=null;
+ 	try {
+ 		FechaCaducidad = new SimpleDateFormat("dd/MM/yyyy").parse(FechaCaducidadSrt);
+ 	} catch (ParseException e1) {
+ 		// TODO Auto-generated catch block
+ 		e1.printStackTrace();
+ 	}
+        
+       Integer idProfesor = 1;//seria el usuario actual
+        
+       Usuario profesor= BuscarProfesor(idProfesor);
+        
+        Vale vale= new Vale();
          
-       
-       String FechaCaducidadSrt= request.getParameter("fechaCaducidad");
-       Date FechaCaducidad=null;
-	try {
-		FechaCaducidad = new SimpleDateFormat("dd/MM/yyyy").parse(FechaCaducidadSrt);
-	} catch (ParseException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
-       
-      Integer idProfesor = 1;//seria el usuario actual
-       
-      Usuario profesor= BuscarProfesor(idProfesor);
-       
-       Vale vale= new Vale();
-        
-       	
-       	
-        vale.setNombre(nombre);
-        vale.setFechaCaducidad(FechaCaducidad);
-        vale.setCantidad(cantidad);
-        vale.setProfesor(profesor);
-        vale.setFechaMaxima(FechaMaxima);
-        vale.setNumeroCursosinscrito(numeroCursosinscrito);
-        vale.setNumeroMinMatricula(numeroMinMatricula);
-        String codigoFinal=generacodigo(vale);
-        vale.setCodigo(codigoFinal);
-        
-        contador++;
-        
-        try {
-			daov.createVale(vale);
-		} catch (InstantiationException | IllegalAccessException
-				| ClassNotFoundException | IllegalStateException
-				| SecurityException | SQLException | NotSupportedException
-				| SystemException | HeuristicMixedException
-				| HeuristicRollbackException | RollbackException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        List<Vale>ListaVales= daov.BuscarValesProfesor(idProfesor);
-        
-        request.setAttribute("ListaVales", ListaVales);
-       // request.setAttribute("profesor", idProfesor);
-        this.getServletConfig().getServletContext().getRequestDispatcher("/ValesDescuento.jsp").forward(request, response);
-    
-        
-        
-    }
+        	
+        	
+         vale.setNombre(nombre);
+         vale.setFechaCaducidad(FechaCaducidad);
+         vale.setCantidad(cantidad);
+         vale.setProfesor(profesor);
+         
+         vale.setNumeroCursosinscrito(numeroCursosinscrito);
+         vale.setNumeroMinMatricula(numeroMinMatricula);
+         String codigoFinal=generacodigo(vale);
+         vale.setCodigo(codigoFinal);
+         
+         contador++;
+         
+         try {
+ 			daov.createVale(vale);
+ 		} catch (InstantiationException | IllegalAccessException
+ 				| ClassNotFoundException | IllegalStateException
+ 				| SecurityException | SQLException | NotSupportedException
+ 				| SystemException | HeuristicMixedException
+ 				| HeuristicRollbackException | RollbackException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
+         
+         List<Vale>ListaVales= daov.BuscarValesProfesor(idProfesor);
+         
+         request.setAttribute("ListaVales", ListaVales);
+        // request.setAttribute("profesor", idProfesor);
+         this.getServletConfig().getServletContext().getRequestDispatcher("/ValesDescuento.jsp").forward(request, response);
+     
+         
+         
+     }
 
-    public Usuario BuscarProfesor(int id){
-    	try {
-			return daou.findById(id);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return null;
-    	
-    }
-    public String generacodigo(Vale vale){
-    	Calendar calendar= Calendar.getInstance();
-    	Integer año= calendar.get(Calendar.YEAR);
-    	Integer mes=calendar.get(Calendar.MONTH);
-    	Integer dia=calendar.get(Calendar.DAY_OF_MONTH);
-    	Integer hora=calendar.get(Calendar.HOUR);
-    	Integer segundo= calendar.get(Calendar.SECOND);
-    	Integer milisegundos=calendar.get(Calendar.MILLISECOND);
-    	Integer ampm=calendar.get(Calendar.AM_PM);
-    	String AMPM=null;
-    	
-    	if(ampm==Calendar.AM){
-    		 AMPM="AM";
-    	}else{
-    		 AMPM="PM";
-    	}
-    	String CodigoFinal= "Vale"+año+mes+dia+hora+segundo+milisegundos+AMPM+vale.getCantidad();
-    	
-    	return CodigoFinal;
+     public Usuario BuscarProfesor(int id){
+     	try {
+ 			return daou.findById(id);
+ 		} catch (SQLException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
+     	return null;
+     	
+     }
+     public String generacodigo(Vale vale){
+     	Calendar calendar= Calendar.getInstance();
+     	Integer año= calendar.get(Calendar.YEAR);
+     	Integer mes=calendar.get(Calendar.MONTH);
+     	Integer dia=calendar.get(Calendar.DAY_OF_MONTH);
+     	Integer hora=calendar.get(Calendar.HOUR);
+     	Integer segundo= calendar.get(Calendar.SECOND);
+     	Integer milisegundos=calendar.get(Calendar.MILLISECOND);
+     	Integer ampm=calendar.get(Calendar.AM_PM);
+     	String AMPM=null;
+     	
+     	if(ampm==Calendar.AM){
+     		 AMPM="AM";
+     	}else{
+     		 AMPM="PM";
+     	}
+     	String CodigoFinal= "Vale"+año+mes+dia+hora+segundo+milisegundos+AMPM+vale.getCantidad();
+     	
+     	return CodigoFinal;
+     
+     }
+     
     
-    }
-    
-   
-    
-    
-}
+     
+     
+ }

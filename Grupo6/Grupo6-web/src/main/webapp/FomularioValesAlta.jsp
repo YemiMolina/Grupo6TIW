@@ -31,7 +31,7 @@
 							      
 							<p> -Numero de cursos en los que debe haberse inscribirse:  <input type="number" name="numeroCursosinscrito"/></p>
 							<p> -Numero minimo del coste de la matricula:  <input type="number" name="numeroMinMatricula"/></p>   
-							 <p> -Fecha maxima de vigencia (dd/mm/yyyy): <input type="text" name="FechaMaxima"/></p>  
+							
 							 <input type="submit" value="Crear nuevo vale">
 							 </div>
 							 

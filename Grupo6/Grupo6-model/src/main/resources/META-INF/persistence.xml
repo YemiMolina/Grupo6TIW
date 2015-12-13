@@ -9,7 +9,7 @@
 		<class>es.uc3m.tiw.model.Persona</class>
 		<class>es.uc3m.tiw.model.Vale</class>
 		<properties>
-			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+			<property name="javax.persistence.schema-generation.database.action" value="update"/>
 		</properties>
 	</persistence-unit>
 </persistence>

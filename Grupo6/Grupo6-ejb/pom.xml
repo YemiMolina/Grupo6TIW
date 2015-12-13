@@ -26,6 +26,17 @@
            
             <scope>provided</scope>
         </dependency>
+        <dependency>
+		    <groupId>org.glassfish.jersey.core</groupId>
+		    <artifactId>jersey-client</artifactId>
+		    <version>2.22.1</version>
+		    <scope>provided</scope>
+		</dependency>
+        <dependency>
+        	<groupId>es.uc3m.tiw.model</groupId>
+        	<artifactId>Grupo6-model</artifactId>
+        	<version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>

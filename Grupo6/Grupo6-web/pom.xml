@@ -32,6 +32,17 @@
         	<version>${project.parent.version}</version>
         	<scope>provided</scope>
         </dependency>
+        <dependency>
+        	<groupId>es.uc3m.tiw.ejb</groupId>
+        	<artifactId>Grupo6-ejb</artifactId>
+        	<version>1.0</version>
+        	<type>ejb</type>
+        </dependency>
+         <dependency>
+        	<groupId>com.sun.jersey</groupId>
+        	<artifactId>jersey-client</artifactId>
+        	<version>1.19</version>
+        </dependency>
     </dependencies>
 
     <build>

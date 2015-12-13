@@ -5,9 +5,11 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
@@ -23,7 +25,9 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+import es.uc3m.tiw.ejb.PagoEjbLocal;
 import es.uc3m.tiw.model.Curso;
+import es.uc3m.tiw.model.Pedido;
 import es.uc3m.tiw.model.Usuario;
 import es.uc3m.tiw.model.Vale;
 import es.uc3m.tiw.model.daos.CursoDao;
@@ -50,6 +54,8 @@ public class ServletPago extends HttpServlet {
 	ICurso daoc;
 	IUsuario daou;
 	IValeDescuento daov;
+	@EJB
+	PagoEjbLocal interfaz;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -75,7 +81,6 @@ public class ServletPago extends HttpServlet {
         int idint= Integer.parseInt(id);
         //busca el curso con el id
         Curso encontrado= BuscarCurso(idint);
-
         HttpSession session = request.getSession();
         Usuario usuActual= (Usuario)session.getAttribute("usuario");
         
@@ -106,23 +111,31 @@ public class ServletPago extends HttpServlet {
         List<Vale> ListaValesFinal= new ArrayList<Vale>();
         
         for (int i = 0; i < ListaVales.size(); i++) {
-        	if(encontrado.getPrecioFinal()==ListaVales.get(i).getNumeroMinMatricula()&&
+        	/*if(encontrado.getPrecioFinal()==ListaVales.get(i).getNumeroMinMatricula()&&
         	usuActual1.getListaCursosProfesor().size()==ListaVales.get(i).getNumeroCursosinscrito() &&
-        	ListaVales.get(i).getFechaCaducidad()==ListaVales.get(i).getFechaMaxima()){
+        	ListaVales.get(i).getFechaCaducidad()==ListaVales.get(i).getFechaMaxima()){*/
+        	
+        	if(encontrado.getPrecio()>ListaVales.get(i).getNumeroMinMatricula()&&
+                	usuActual1.getListaCursosAlumno().size()==ListaVales.get(i).getNumeroCursosinscrito()&&
+                			ListaVales.get(i).getFechaCaducidad().after(new Date())
+        			)
+        	{
         		Vale vale = ListaVales.get(i);
         		ListaValesFinal.add(vale);
-        		request.setAttribute("ListaValesFinal", ListaValesFinal);
+        		
         		
         	}
 			
 		}
-  
+        request.setAttribute("ListaValesFinal", ListaValesFinal);
         //ServletRegistroUsuario.listaUsuarios.get(usuActual);//añadir usuario a la lista de usuarios
         request.setAttribute("usuario", usuActual1);
        /* request.setAttribute("apellidos", usuActual.getApellidos());*/
         request.setAttribute("nombre", usuActual1.getNombre());
-
+        request.setAttribute("precio", encontrado.getPrecio());
+        request.setAttribute("precioFinal", 0.0);
         this.getServletConfig().getServletContext().getRequestDispatcher("/Matriculacion.jsp").forward(request, response);
+        	
         
     }
 
@@ -130,7 +143,35 @@ public class ServletPago extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+    	String action=request.getParameter("action");      
+        if(action!=null && action.equals("pagar")){
+        	String codigoTarjeta=request.getParameter("codigoTarjeta");
+       	 String precioFinal=request.getParameter("precioFinal");
+       	 double precioFinal1=Double.parseDouble(precioFinal);
+            //para comprobar que vaya
+          	Pedido pedido= new Pedido();
+          	pedido.setCodigopedido("");
+          	pedido.setCodigoTarjeta(codigoTarjeta);
+          	pedido.setImporte(precioFinal1);
+          	interfaz.pagar(pedido);
+          	this.getServletConfig().getServletContext().getRequestDispatcher("/Aceptacion.jsp").forward(request, response);
+              
+             }else{
+            	 String cantidad=request.getParameter("vale");
+              	Integer cantidad1=0;
+              	if(cantidad!=null){
+                  cantidad1=Integer.parseInt(cantidad) ;}
+              	double precio1=0.0;
+                  String precio= request.getParameter("precio");
+                  if(precio!=null){
+                  precio1= Double.parseDouble(precio);}
+                 
+                  double precioFinal= precio1-cantidad1;
+                  request.setAttribute("precioFinal", precioFinal);
+                  request.setAttribute("precio", precio1);
+                  this.getServletConfig().getServletContext().getRequestDispatcher("/PagoFinal.jsp").forward(request, response);
+                  
+              } 
     
     }
 	public Curso BuscarCurso(int id) {
