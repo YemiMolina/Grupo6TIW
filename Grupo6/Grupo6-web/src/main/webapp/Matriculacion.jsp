@@ -14,10 +14,10 @@
 </head>
 <body>
      
-    <%int idCursoActual = Integer.parseInt(request.getParameter("id"));%>
+   <%int idCursoActual = Integer.parseInt(request.getParameter("id"));%>
    <%double precio =  (Double)request.getAttribute("precio");%>
    <%double precioFinal =  (Double)request.getAttribute("precioFinal");%>
-    <%List<Curso> CursosMatriculados = (List<Curso>)request.getAttribute("CursosMatriculados");
+   <%List<Curso> CursosMatriculados = (List<Curso>)request.getAttribute("CursosMatriculados");
     List<Vale> ListaValesFinal = (List<Vale>)request.getAttribute("ListaValesFinal");
   %>
   
