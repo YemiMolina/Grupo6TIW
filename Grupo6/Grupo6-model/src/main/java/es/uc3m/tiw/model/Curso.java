@@ -53,12 +53,12 @@ public class Curso implements Serializable {
 	private int numeroh;
 	private double precio;
 	
-	@ManyToOne(cascade = ALL)
+	@ManyToOne
 //	@JoinColumn()
 	private Usuario Profesor ;
 
 	private String titulo;
-	//private boolean validado=false;// la validacion es falsa por deecto
+
 	
 	public Curso() {
 		super();

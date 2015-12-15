@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="es.uc3m.tiw.web.ServletSession"%>
+    <%@ page import="javax.servlet.ServletException"%>
+    <%@ page import="javax.servlet.annotation.WebServlet"%>
+    <%@ page import="javax.servlet.http.HttpServlet"%>
+    <%@ page import="javax.servlet.http.HttpServletRequest"%>
+    <%@ page import="javax.servlet.http.HttpServletResponse"%>
+    <%@ page import="javax.servlet.http.HttpSession"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -33,7 +40,11 @@
 
 <body>
   <!--Header-->
-	<%@include file="Header.jsp"%> 
+  	<%if (session.getAttribute("usuario") != null) { %>
+ 	<jsp:include page="HeaderLog.jsp"/>
+	<%}else{%>
+	<jsp:include page="Header.jsp"/>
+	<% } %> 
 
 <div id="fondoBlanco" >
 <p> <strong>Formulario para dar de alta los cursos a la plataforma Dokulearning</strong></p>
@@ -67,11 +78,8 @@
     
     <p> -Precio: <input type="number" name="precio"></p> <br>
     
-    <p> -Tipos de Descuentos : 
+    <p> -Tipo de Descuentos : 
      <br>
-        <input type="radio" name="descuento" value="fijo"  /> 10 euros
-        <br>
-        <input type="radio" name="descuento" value="variable"  /> 10% de descuento
         <br>
         <input type="radio" name="descuento" value="ninguno"  /> Ningun descuento
         <br>

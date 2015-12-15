@@ -13,6 +13,12 @@
 <title>Pago Final</title>
 </head>
 <body>
+     <!--Header-->
+  	<%if (session.getAttribute("usuario") != null) { %>
+ 	<jsp:include page="HeaderLog.jsp"/>
+	<%}else{%>
+	<jsp:include page="Header.jsp"/>
+	<% } %> 
     
 
 	<%double precio =  (Double)request.getAttribute("precio");%>

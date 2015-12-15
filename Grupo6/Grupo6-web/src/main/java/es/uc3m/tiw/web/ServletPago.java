@@ -56,6 +56,8 @@ public class ServletPago extends HttpServlet {
 	IValeDescuento daov;
 	@EJB
 	PagoEjbLocal interfaz;
+	boolean matriculado=false;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -77,7 +79,10 @@ public class ServletPago extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id=(String) request.getParameter("id");
+    	 
+    	
+    	
+    	String id=(String) request.getParameter("id");
         int idint= Integer.parseInt(id);
         //busca el curso con el id
         Curso encontrado= BuscarCurso(idint);
@@ -90,8 +95,7 @@ public class ServletPago extends HttpServlet {
         //Aqui meto la info del obj usuario y ya puedo acceder a el y obtener lo que quiera
         Usuario usuActual2= (Usuario) request.getSession().getAttribute("usuarioActual");*/
        
-        Usuario usuActual1= BuscarUsuario(1);
-
+        Usuario usuActual1= BuscarUsuario(usuActual.getIdusuarios());
         List<Curso> CursosMatriculados = new ArrayList<Curso>();
        
        // CursosMatriculados=usuActual.getUsuarioCurso();
@@ -99,6 +103,10 @@ public class ServletPago extends HttpServlet {
        //CursosMatriculados= Usuario.Matricular(encontrado);
         
         CursosMatriculados= usuActual1.getListaCursosAlumno();
+       if( usuActual1.EstaMatriculado(encontrado.getIdcursos())){
+    	   this.getServletConfig().getServletContext().getRequestDispatcher("/Mensaje.jsp").forward(request, response);      
+       }else{
+        
         CursosMatriculados.add(encontrado);
         daou.update(usuActual1);
         request.setAttribute("CursosMatriculados", CursosMatriculados);
@@ -106,15 +114,10 @@ public class ServletPago extends HttpServlet {
        
         Usuario profesorcurso=encontrado.getProfesor();
         int idprofesor= profesorcurso.getIdusuarios();
-        List<Vale> ListaVales= daov.BuscarValesProfesor(idprofesor);
-        
+        List<Vale> ListaVales= daov.BuscarValesProfesor(idprofesor);   
         List<Vale> ListaValesFinal= new ArrayList<Vale>();
         
-        for (int i = 0; i < ListaVales.size(); i++) {
-        	/*if(encontrado.getPrecioFinal()==ListaVales.get(i).getNumeroMinMatricula()&&
-        	usuActual1.getListaCursosProfesor().size()==ListaVales.get(i).getNumeroCursosinscrito() &&
-        	ListaVales.get(i).getFechaCaducidad()==ListaVales.get(i).getFechaMaxima()){*/
-        	
+        for (int i = 0; i < ListaVales.size(); i++) {	
         	if(encontrado.getPrecio()>ListaVales.get(i).getNumeroMinMatricula()&&
                 	usuActual1.getListaCursosAlumno().size()==ListaVales.get(i).getNumeroCursosinscrito()&&
                 			ListaVales.get(i).getFechaCaducidad().after(new Date())
@@ -122,20 +125,17 @@ public class ServletPago extends HttpServlet {
         	{
         		Vale vale = ListaVales.get(i);
         		ListaValesFinal.add(vale);
-        		
-        		
         	}
 			
 		}
         request.setAttribute("ListaValesFinal", ListaValesFinal);
         //ServletRegistroUsuario.listaUsuarios.get(usuActual);//añadir usuario a la lista de usuarios
         request.setAttribute("usuario", usuActual1);
-       /* request.setAttribute("apellidos", usuActual.getApellidos());*/
         request.setAttribute("nombre", usuActual1.getNombre());
         request.setAttribute("precio", encontrado.getPrecio());
         request.setAttribute("precioFinal", 0.0);
         this.getServletConfig().getServletContext().getRequestDispatcher("/Matriculacion.jsp").forward(request, response);
-        	
+       }	
         
     }
 
@@ -150,7 +150,7 @@ public class ServletPago extends HttpServlet {
        	 double precioFinal1=Double.parseDouble(precioFinal);
             //para comprobar que vaya
           	Pedido pedido= new Pedido();
-          	pedido.setCodigopedido("");
+          	pedido.setCodigoPedido("");
           	pedido.setCodigoTarjeta(codigoTarjeta);
           	pedido.setImporte(precioFinal1);
           	interfaz.pagar(pedido);

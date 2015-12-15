@@ -8,8 +8,9 @@
 		<class>es.uc3m.tiw.model.Leccion</class>
 		<class>es.uc3m.tiw.model.Persona</class>
 		<class>es.uc3m.tiw.model.Vale</class>
+		<class>es.uc3m.tiw.model.Pedido</class>
 		<properties>
-			<property name="javax.persistence.schema-generation.database.action" value="update"/>
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 		</properties>
 	</persistence-unit>
 </persistence>

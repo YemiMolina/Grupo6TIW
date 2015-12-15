@@ -1,10 +1,21 @@
 package es.uc3m.tiw.ejb;
 
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.annotation.Resource;
 import javax.ejb.LocalBean;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -13,27 +24,52 @@ import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 
 import es.uc3m.tiw.model.Pedido;
+import es.uc3m.tiw.model.daos.CursoDao;
+import es.uc3m.tiw.model.daos.ICurso;
+import es.uc3m.tiw.model.daos.IPedido;
+import es.uc3m.tiw.model.daos.PedidoDao;
 
 @Stateless(mappedName = "serviciosPago")
 @LocalBean
 public class PagosEjb implements PagoEjbLocal{
 	
+	@PersistenceContext( unitName="Grupo6-model")
+	EntityManager em;
+	private PedidoDao dao;
+	
+	public PagosEjb() {
+		
+
+	}
+	
+	
 	public String pagar (Pedido pedido){
+		dao = new PedidoDao(em);
+		
+		String codigoPedido=generarCodigo();
+		pedido.setCodigoPedido(codigoPedido);
+		pedido.setFechaPedido(new Date());
 		
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:8080/banco-web/resources/pasarela/pagoNormal/"+pedido.getImporte()+"/" +pedido.getCodigoTarjeta()+"/"+ generarCodigo()+"/" +"xml");
-		/*Form form = new Form();
-		form.param("importe", "" );
-		form.param("numeroTarjeta", "" );
-		form.param("codigoPedido", generarCodigo() );*/
-		
+		WebTarget target = client.target("http://localhost:8080/banco-web/resources/pasarela/pagoNormal/"+pedido.getImporte()+"/" +pedido.getCodigoTarjeta()+"/"+pedido.getCodigoPedido() +"/"+"xml");
 		String bean =target.request(MediaType.TEXT_PLAIN).get(String.class);
+
+		
+			try {
+				dao.guardarPedido(pedido);
+			} catch (SecurityException | IllegalStateException
+					| RollbackException | HeuristicMixedException
+					| HeuristicRollbackException | SystemException
+					| NotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		
 		return bean;
 	}
 	
-	public PagosEjb() {
-		// TODO Auto-generated constructor stub
-	}
+	
 	
     public String generarCodigo(){
     	Date date = new Date(); 

@@ -21,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.text.DateFormatter;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
@@ -71,7 +72,9 @@ public class ServletValesDescuento extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-    	
+		HttpSession session = request.getSession();
+        Usuario usuActual= (Usuario)session.getAttribute("usuario");
+        request.setAttribute("usuario", usuActual);
     	request.setAttribute("ListaVales", ListaVales);
     	this.getServletConfig().getServletContext().getRequestDispatcher("/ValesDescuento.jsp").forward(request, response);
 
@@ -81,7 +84,9 @@ public class ServletValesDescuento extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nombre =request.getParameter("nombre");
+		HttpSession session = request.getSession();
+        Usuario usuActual= (Usuario)session.getAttribute("usuario");
+    	String nombre =request.getParameter("nombre");
         long cantidad=Long.parseLong(request.getParameter("cantidad"));
         Integer numeroCursosinscrito=Integer.parseInt(request.getParameter("numeroCursosinscrito"));
         double numeroMinMatricula= Double.parseDouble(request.getParameter("numeroMinMatricula"));
@@ -94,7 +99,7 @@ public class ServletValesDescuento extends HttpServlet {
  		e1.printStackTrace();
  	}
         
-       Integer idProfesor = 1;//seria el usuario actual
+       Integer idProfesor = usuActual.getIdusuarios();//seria el usuario actual
         
        Usuario profesor= BuscarProfesor(idProfesor);
         
@@ -128,6 +133,7 @@ public class ServletValesDescuento extends HttpServlet {
          List<Vale>ListaVales= daov.BuscarValesProfesor(idProfesor);
          
          request.setAttribute("ListaVales", ListaVales);
+         request.setAttribute("usuario", profesor);
         // request.setAttribute("profesor", idProfesor);
          this.getServletConfig().getServletContext().getRequestDispatcher("/ValesDescuento.jsp").forward(request, response);
      

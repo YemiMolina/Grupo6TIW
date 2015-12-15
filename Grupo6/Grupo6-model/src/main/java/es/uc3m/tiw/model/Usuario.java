@@ -347,6 +347,16 @@ private Direccion direcc*/
 			this.rol = rol;
 		}
 
+		public boolean EstaMatriculado (int id){
+			
+			for (int i = 0; i < ListaCursosAlumno.size(); i++) {
+				if(ListaCursosAlumno.get(i).getIdcursos().equals(id)){
+					return true;
+				}
+				
+			}
+			return false;
+		}
 
 	/*@Override
 	public String toString() {

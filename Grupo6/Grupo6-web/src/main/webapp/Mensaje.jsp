@@ -2,9 +2,18 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.util.ArrayList"%>
     <%@ page import="java.util.Iterator"%>
-    <%@ page import="es.uc3m.tiw.web.Curso"%>
+    <%@ page import="es.uc3m.tiw.model.Curso"%>
     <%@ page import="es.uc3m.tiw.model.Usuario"%>
     <%@ page import="es.uc3m.tiw.web.ServletPago"%>
+    
+        <%@ page import="es.uc3m.tiw.web.ServletSession"%>
+    <%@ page import="javax.servlet.ServletException"%>
+    <%@ page import="javax.servlet.annotation.WebServlet"%>
+    <%@ page import="javax.servlet.http.HttpServlet"%>
+    <%@ page import="javax.servlet.http.HttpServletRequest"%>
+    <%@ page import="javax.servlet.http.HttpServletResponse"%>
+    <%@ page import="javax.servlet.http.HttpSession"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!--Head contenedor del título de la página, enlaces a las stylesheets, tipografías y charset-->
@@ -21,7 +30,7 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  <title>Catalogo de cursos</title>
+
   <meta name="Alex" content="Grupo de practicas TIW" lang="es">
   <link rel="icon" type="image/png" href="./images/icono.jpg"> 
 
@@ -37,28 +46,25 @@
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Ya esta matriculado</title>
 </head>
 <body>
-  <!--Header-->
+   <!--Header-->
   	<%if (session.getAttribute("usuario") != null) { %>
  	<jsp:include page="HeaderLog.jsp"/>
 	<%}else{%>
 	<jsp:include page="Header.jsp"/>
 	<% } %> 
 <div class="row">
-    <%Boolean exitoMatriculado = (Boolean)(request.getAttribute("ExitoAniadir"));%>
-    <% if(exitoMatriculado==false){%>
+      
+    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
        
         <p>Ya esta matriculado en este curso, no puede volver a matricularse </p>
      
-       
-    <%}else{%>
-        <p>Has sido matriculado </p>
-   
-    <%}%>  
 
-    <a href="ServletMisCursos?id=<%=request.getParameter("id")%>">  Ir al perfil </a><br>
+   <%--  <a href="ServletMisCursos?id=<%=request.getParameter("id")%>">  --%>
+      <a href="PersistenceServletCursos"> Ir al catalgo </a><br>
+    </div>
     </div>
 
         <%@include file="Footer.jsp"%>
