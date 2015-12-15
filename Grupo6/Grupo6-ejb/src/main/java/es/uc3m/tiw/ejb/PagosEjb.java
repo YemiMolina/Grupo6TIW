@@ -37,9 +37,7 @@ public class PagosEjb implements PagoEjbLocal{
 	EntityManager em;
 	private PedidoDao dao;
 	
-	public PagosEjb() {
-		
-
+	public PagosEjb() {	
 	}
 	
 	
@@ -53,8 +51,7 @@ public class PagosEjb implements PagoEjbLocal{
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target("http://localhost:8080/banco-web/resources/pasarela/pagoNormal/"+pedido.getImporte()+"/" +pedido.getCodigoTarjeta()+"/"+pedido.getCodigoPedido() +"/"+"xml");
 		String bean =target.request(MediaType.TEXT_PLAIN).get(String.class);
-
-		
+		pedido.setCodidoBanco(bean);
 			try {
 				dao.guardarPedido(pedido);
 			} catch (SecurityException | IllegalStateException
