@@ -3,6 +3,14 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.Iterator"%>
 <%@ page import="es.uc3m.tiw.model.Leccion"%>
+
+<%@ page import="es.uc3m.tiw.web.ServletSession"%>
+    <%@ page import="javax.servlet.ServletException"%>
+    <%@ page import="javax.servlet.annotation.WebServlet"%>
+    <%@ page import="javax.servlet.http.HttpServlet"%>
+    <%@ page import="javax.servlet.http.HttpServletRequest"%>
+    <%@ page import="javax.servlet.http.HttpServletResponse"%>
+    <%@ page import="javax.servlet.http.HttpSession"%>
 <!DOCTYPE html >
    
 <html>
@@ -45,7 +53,7 @@
 	 <jsp:include page="Header.jsp"/> 
 	<% } %>
 	
-	<div id="fondoBlanco" >
+	<div id="fondoBlanco" style="margin: 5px">
 	<form action="ServletLecciones" enctype="multipart/form-data"
 		method="post">
 		<hr>

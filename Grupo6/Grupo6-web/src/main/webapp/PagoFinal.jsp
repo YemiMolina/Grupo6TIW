@@ -6,11 +6,39 @@
     <%@ page import="es.uc3m.tiw.model.Vale"%>
     <%@ page import="es.uc3m.tiw.model.Usuario"%>
     <%@ page import="es.uc3m.tiw.web.ServletPago"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
+   
 <html>
+<!--Head contenedor del título de la página, enlaces a las stylesheets, tipografías y charset-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Pago Final</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <!-- Jquery para cargar los scripts de bootstrap --> 
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <title>Pago final</title>
+  <meta name="Alex" content="Grupo de practicas TIW" lang="es">
+  <link rel="icon" type="image/png" href="./images/icono.jpg"> 
+
+
+  <link rel="stylesheet" type="text/css" href="./style/styleHome.css">
+   <link rel="stylesheet" type="text/css" href="./style/styleFondoBlanco.css">
+    <link rel="stylesheet" type="text/css" href="./style/styleSimulacion.css">
+    
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="./script/scriptHome.js"></script>
+  <script type="text/javascript" src="./script/scriptSimulacion.js"></script>
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
+  <META HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
      <!--Header-->
@@ -27,7 +55,7 @@
    
     El precio inicial del curso era :
      <%= precio %> <br> <br>
-	El precio final del curso con el descuento apliaco es :
+	El precio final del curso con el descuento aplicado es :
 	<%= precioFinal %>
     <br>
     
@@ -45,6 +73,7 @@ Numero de la tarjeta:
      <%-- <a href="ServletPago?action=pagar&id=<%=request.getParameter("id")%>">Finalizar pago </a> --%>
    <!--  <a href="Perfil.jsp">  Finalizar pago </a><br> -->
     
-    
+</div>
+<%@include file="Footer.jsp"%>	    
 </body>
 </html>

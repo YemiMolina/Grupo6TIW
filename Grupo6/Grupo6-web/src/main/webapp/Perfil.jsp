@@ -7,7 +7,13 @@
 <%@ page import="es.uc3m.tiw.web.ServletRegistroUsuario"%>
 <%@ page import="es.uc3m.tiw.model.Curso"%>
 
-
+	<%@ page import="es.uc3m.tiw.web.ServletSession"%>
+    <%@ page import="javax.servlet.ServletException"%>
+    <%@ page import="javax.servlet.annotation.WebServlet"%>
+    <%@ page import="javax.servlet.http.HttpServlet"%>
+    <%@ page import="javax.servlet.http.HttpServletRequest"%>
+    <%@ page import="javax.servlet.http.HttpServletResponse"%>
+    <%@ page import="javax.servlet.http.HttpSession"%>
 <!DOCTYPE html >
 <html>
 <head>

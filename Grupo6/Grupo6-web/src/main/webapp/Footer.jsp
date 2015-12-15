@@ -22,7 +22,7 @@
             <ul class="enlacesFinal">
               <li><a class="enlaceF" href="ServletLogin?accion=Perfiles">Personas</a></li>
               <li><a class="enlaceF" href="ServletLogin?accion=Perfiles">Profesores</a></li>
-              <li><a class="enlaceF" href="ServletCursos">Cursos</a></li>
+              <li><a class="enlaceF" href="PersistenceServletCursos">Cursos</a></li>
             </ul>
           </div>
         </div>

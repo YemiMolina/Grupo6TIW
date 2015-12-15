@@ -10,6 +10,15 @@
     <%@ page import="es.uc3m.tiw.web.PersistenceServletCursos"%>
     <%@ page import="es.uc3m.tiw.model.Usuario"%>
     <%@ page import="es.uc3m.tiw.web.ServletValesDescuento"%>
+    
+    <%@ page import="es.uc3m.tiw.web.ServletSession"%>
+    <%@ page import="javax.servlet.ServletException"%>
+    <%@ page import="javax.servlet.annotation.WebServlet"%>
+    <%@ page import="javax.servlet.http.HttpServlet"%>
+    <%@ page import="javax.servlet.http.HttpServletRequest"%>
+    <%@ page import="javax.servlet.http.HttpServletResponse"%>
+    <%@ page import="javax.servlet.http.HttpSession"%>
+    
 <!DOCTYPE html >
   
 <html>
@@ -27,7 +36,7 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  <title>Lista comisiones</title>
+  <title>Vales de descuento</title>
   <meta name="Alex" content="Grupo de practicas TIW" lang="es">
   <link rel="icon" type="image/png" href="./images/icono.jpg"> 
 
@@ -43,12 +52,12 @@
 </head>
 
 <body>
-  <%-- <!--Header-->
+  	<!--Header-->
   	<%if (session.getAttribute("usuario") != null) { %>
  	<jsp:include page="HeaderLog.jsp"/>
 	<%}else{%>
 	<jsp:include page="Header.jsp"/>
-	<% } %> --%>
+	<% } %>
 	
 	<div id="fondoBlanco" >
 	

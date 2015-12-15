@@ -88,7 +88,7 @@
       <input type="submit" value="Aplicar el descuento">
     </form>
 </div>
-    
-    
+        <!--Pie de página-->
+	<%@include file="Footer.jsp"%> 
 </body>
 </html>

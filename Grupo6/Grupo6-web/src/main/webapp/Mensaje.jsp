@@ -6,7 +6,7 @@
     <%@ page import="es.uc3m.tiw.model.Usuario"%>
     <%@ page import="es.uc3m.tiw.web.ServletPago"%>
     
-        <%@ page import="es.uc3m.tiw.web.ServletSession"%>
+    <%@ page import="es.uc3m.tiw.web.ServletSession"%>
     <%@ page import="javax.servlet.ServletException"%>
     <%@ page import="javax.servlet.annotation.WebServlet"%>
     <%@ page import="javax.servlet.http.HttpServlet"%>
@@ -55,7 +55,7 @@
 	<%}else{%>
 	<jsp:include page="Header.jsp"/>
 	<% } %> 
-<div class="row">
+<div class="row" id="fondoBlanco" style="margin: 5px">
       
     <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
        
@@ -63,7 +63,7 @@
      
 
    <%--  <a href="ServletMisCursos?id=<%=request.getParameter("id")%>">  --%>
-      <a href="PersistenceServletCursos"> Ir al catalgo </a><br>
+      <a href="PersistenceServletCursos"> Ir al catalogo </a><br>
     </div>
     </div>
 

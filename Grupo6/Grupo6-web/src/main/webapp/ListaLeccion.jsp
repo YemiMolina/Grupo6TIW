@@ -4,7 +4,16 @@
     <%@ page import="es.uc3m.tiw.model.Leccion"%>
     <%@ page import="es.uc3m.tiw.model.Curso"%>
     <%@ page import="es.uc3m.tiw.web.PersistenceServletCursos"%>
-        <%@ page import="es.uc3m.tiw.web.ServletLecciones"%>
+    <%@ page import="es.uc3m.tiw.web.ServletLecciones"%>
+        
+    <%@ page import="es.uc3m.tiw.web.ServletSession"%>
+    <%@ page import="javax.servlet.ServletException"%>
+    <%@ page import="javax.servlet.annotation.WebServlet"%>
+    <%@ page import="javax.servlet.http.HttpServlet"%>
+    <%@ page import="javax.servlet.http.HttpServletRequest"%>
+    <%@ page import="javax.servlet.http.HttpServletResponse"%>
+    <%@ page import="javax.servlet.http.HttpSession"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -39,7 +48,7 @@
 
 <body id="body">
 
-	<div id="fondoBlanco">
+	<div id="fondoBlanco" style="margin: 5px">
 	
 	<ul>
 				<%

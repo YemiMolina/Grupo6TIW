@@ -123,7 +123,9 @@
 		<%//if (session.getAttribute("usuario") != null) { 
 			//Usuario log = (Usuario)session.getAttribute("usuario");	
 			//if( log.getRol() != 1 ){ %>
-				<a href="FormularioAlta.jsp" ><input id="" type="submit" value="Dar de alta otro curso"></a>	
+				<a href="FormularioAlta.jsp" ><input id="" type="submit" value="Dar de alta otro curso"></a>
+				<br>
+				<a href="FomularioValesAlta.jsp" ><input id="" type="submit" value="Crear vale descuento"></a>	
 			<%//} %>
 		<%//} %>
 
