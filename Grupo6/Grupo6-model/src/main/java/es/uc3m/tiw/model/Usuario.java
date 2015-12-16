@@ -40,18 +40,18 @@ public class Usuario implements Serializable {
 		//public String imagenuri;
 		//public ArrayList<Curso> Listacursos= new ArrayList<Curso>();
 		
-/*		@ManyToMany
+	/*	@OneToMany
 		private List <Curso> ListaDeseos =new ArrayList <Curso>();
 		
 		
-			public List<Curso> getListaDeseos() {
+		public List<Curso> getListaDeseos() {
 			return ListaDeseos;
 		}
 
 		public void setListaDeseos(List<Curso> listaDeseos) {
 			ListaDeseos = listaDeseos;
-		}*/
-
+		}
+*/
 			@ManyToMany
 			private List <Curso> ListaCursosAlumno =new ArrayList <Curso>();
 

@@ -35,12 +35,18 @@
 </head>
 
 <body>
-
+  <!--Header-->
+  	<%if (session.getAttribute("usuario") != null) { %>
+ 	<jsp:include page="HeaderLog.jsp"/>
+	<%}else{%>
+	<jsp:include page="Header.jsp"/>
+	<% } %> 
+	
 <div id="fondoBlanco" >
 	<form name="formulario" method="post" class="form-horizontal mitad"
 		action="ServletRegistroUsuario">
 
-
+<%int i=0; %>
 <% Usuario UsuarioMod =(Usuario) request.getAttribute("UsuarioModificar"); %>
 
 

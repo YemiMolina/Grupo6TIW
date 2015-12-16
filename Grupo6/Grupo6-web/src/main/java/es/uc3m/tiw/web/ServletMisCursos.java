@@ -78,6 +78,7 @@ public class ServletMisCursos extends HttpServlet {
     	
     	Usuario usuActual1= BuscarUsuario(usuActual.getIdusuarios());
         List<Curso> CursosMatriculados = new ArrayList<Curso>();
+        int tmñ=CursosMatriculados.size();
         CursosMatriculados= usuActual1.getListaCursosAlumno();
         daou.update(usuActual1);
         request.setAttribute("CursosMatriculados", CursosMatriculados);     

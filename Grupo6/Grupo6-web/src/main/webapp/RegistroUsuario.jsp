@@ -85,6 +85,14 @@
 					</div>
 
 					<div class="form-group">
+                    <label for="rol">Rol</label>
+                        <br>
+                        <input type="radio" name= "rol" value="1"/>Estudiante
+                        <br>
+                        <input type="radio" name= "rol" value="2"/>Profesor
+  					</div>
+
+					<div class="form-group">
 						<label for="tlf">Telefono:</label> <input type="tel"
 							class="form-control" name="telefono" placeholder="Telefono"
 							required id="telefono">

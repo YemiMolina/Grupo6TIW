@@ -33,6 +33,8 @@ import es.uc3m.tiw.model.daos.UsuarioDAO;
 public class ServletRegistroUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	private static final String REGISTRO_JSP= "/Perfil.jsp";
+	private static final String MODIFICADO_JSP= "/PerfilModificado.jsp";
 	
 	//public static ArrayList <Usuario> listaUsuarios;
 	//private es.uc3m.tiw.model.Usuario us1;
@@ -74,6 +76,19 @@ public class ServletRegistroUsuario extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		HttpSession session = request.getSession();
+
+		String accion = (String) request.getParameter("action");
+
+		Usuario UsuarioMod = (Usuario) session.getAttribute("usuario"); 
+		
+		if (accion != null && accion.equals("modificar")) {
+
+			request.setAttribute("UsuarioModificar", UsuarioMod);
+
+			this.getServletConfig().getServletContext().getRequestDispatcher("/FormularioPerfilModificado.jsp").forward(request, response);
+
+		}
 	}
 
 	/**
@@ -82,25 +97,17 @@ public class ServletRegistroUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+
+//		String pagina = "";
+//		pagina= REGISTRO_JSP;
 	
-		/*Usuario alumno1 = new Usuario("borjita", "pass1", "Borja", "Perez", 21,1,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265, "" );
-		Usuario alumno2 = new Usuario("carlos", "pass1", "Borja", "Perez", 21,1,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265, "");
-		Usuario profesor1 = new Usuario("profe", "pass1", "Borja", "Perez", 21,2,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265, "");
-		Usuario admin = new Usuario("admin", "admin", "Administrador", "The boss", 21,0,"borjita@gmail.com","91888777555", "C/ Mediterraneo", "Chico", "Tecnologia", 87878, "17/15", 265, "");
-		
-		listaUsuarios = new ArrayList<Usuario>();
-		listaUsuarios.add(alumno1);
-		listaUsuarios.add(alumno2);
-		listaUsuarios.add(profesor1);
-		listaUsuarios.add(admin);*/
-		
-		
 		String usuario = request.getParameter("usuario");
 		String clave = request.getParameter("clave");
 		String nombre = request.getParameter("nombre");
 		String apellidos = request.getParameter("apellidos");
 		Integer edad = Integer.valueOf(request.getParameter("edad"));
-		Integer rol = 1;
+		Integer rol = Integer.valueOf(request.getParameter("rol"));
 		String email = request.getParameter("email");
 		String telefono = request.getParameter("telefono");
 		String direccion = request.getParameter("direccion");
@@ -110,7 +117,38 @@ public class ServletRegistroUsuario extends HttpServlet {
 		String expiracion = request.getParameter("expiracion");
 		Integer codigoCVC = Integer.valueOf(request.getParameter("codigoCVC"));
 		
-		//Creo un usuario con los atributos
+//		
+//		if (usuActual != null) {
+//		pagina = MODIFICADO_JSP;
+//
+//			Usuario UsuarioMod = usuActual;
+//
+//			UsuarioMod.setUsuario(usuario);
+//
+//			UsuarioMod.setClave(clave);
+//
+//			UsuarioMod.setNombre(nombre);
+//
+//			UsuarioMod.setApellidos(apellidos);
+//
+//			UsuarioMod.setEdad(edad);
+//
+//			UsuarioMod.setEmail(email);
+//
+//			UsuarioMod.setTelefono(telefono);
+//
+//			UsuarioMod.setDireccion(direccion);
+//
+//			UsuarioMod.setDescripcion(descripcion);
+//
+//			UsuarioMod.setIntereses(intereses);
+//
+//			dao.update(UsuarioMod);
+//			
+//			request.setAttribute("UsuarioModificar", UsuarioMod);
+//
+//		}else{
+//Creo un usuario con los atributos
 		
 		Usuario us1 = new Usuario();
 		us1.setUsuario(usuario);
@@ -141,12 +179,11 @@ public class ServletRegistroUsuario extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("usuario", us1);
-
 		
 		//Pinta lo anterior en el jsp Perfil
 		
 		config2.getServletContext().getRequestDispatcher("/Perfil.jsp").forward(request, response);
-		
+//	}
 	}
 	
 
