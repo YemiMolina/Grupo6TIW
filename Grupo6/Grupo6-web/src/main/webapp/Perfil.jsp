@@ -109,7 +109,7 @@
   </div>
   
   
-  <div id="CursosDeseo">
+  <%-- <div id="CursosDeseo">
       <p>Lista de Deseos</p>
 
        <!--  Añadido para que salgan sus cursos -->
@@ -124,7 +124,7 @@
 
       </ul>
         
-  </div>
+  </div> --%>
 
 <%@include file="Footer.jsp"%>
 
