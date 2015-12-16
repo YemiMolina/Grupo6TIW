@@ -65,8 +65,7 @@
     <br><p>Se han encontrado los siguientes resultados</p>
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		 <a href="ServletMisCursos?action=VerMatriculados" > Ver mis cursos matriculados </a></li><br>
-		 <!-- <a href="ServletMisCursos?action=VerDeseos" > Ver mi lista de deseos </a></li><br> -->
+		 
 <%
 	List<Curso> Listacursos = (List<Curso>) request.getAttribute("Listacursos");
 	//Iterator<Curso> iterador = null;
@@ -84,9 +83,11 @@
 		<br><br>
 
 		 <img src="ServletImagenes?foto=<%=curso.getImagenuri()%>"> <br><br>
-
+		<%if (session.getAttribute("usuario") != null) { %>
 		 <a href="ServletLecciones?action=mostrar&id=<%=curso.getIdcursos()%>" > Ver sus Lecciones </a></li><br>
 		 <a href="ServletPago?id=<%=curso.getIdcursos()%>" > Matricularse en este curso </a></li> <br>
+		 <!-- <a href="ServletMisCursos?action=VerDeseos" > Ver mi lista de deseos </a></li><br> -->	
+			<%} %>
 			<%if (session.getAttribute("usuario") != null) { 
 			Usuario log = (Usuario)session.getAttribute("usuario");	
 			if( log.getRol() != 1 ){ %>
@@ -104,8 +105,9 @@
 
 		<br>
 		
-		<%if (session.getAttribute("usuario") != null) { 
-			Usuario log = (Usuario)session.getAttribute("usuario");	
+		<%if (session.getAttribute("usuario") != null) { %>
+			<a href="ServletMisCursos?action=VerMatriculados" ><input id="" type="submit" value="Ver mis cursos matriculados"> </a></li><br>
+			<% Usuario log = (Usuario)session.getAttribute("usuario");	
 			if( log.getRol() != 1 ){ %>
 				<a href="FormularioAlta.jsp" ><input id="" type="submit" value="Dar de alta otro curso"></a>
 				<br>

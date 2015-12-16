@@ -50,13 +50,13 @@
        	<li><a href="ServletLogin?accion=Perfiles">Personas</a></li>
       </ul>
      
-      <form class="navbar-form navbar-left" role="search">
+    <!--   <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Busca Cursos">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
-     <!--  <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sesion <span class="caret"></span></a>
           <ul class="dropdown-menu">
