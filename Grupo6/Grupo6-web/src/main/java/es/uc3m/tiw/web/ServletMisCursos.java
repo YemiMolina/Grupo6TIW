@@ -88,7 +88,7 @@ public class ServletMisCursos extends HttpServlet {
     		
         	Usuario usuActual1= BuscarUsuario(usuActual.getIdusuarios());
             List<Curso> CursosDeseo = new ArrayList<Curso>();
-            CursosDeseo= usuActual1.getListaDeseos();
+//            CursosDeseo= usuActual1.getListaDeseos();
             daou.update(usuActual1);
             request.setAttribute("CursosDeseo", CursosDeseo);     
             request.setAttribute("usuario", usuActual1);
@@ -115,7 +115,7 @@ public class ServletMisCursos extends HttpServlet {
            // encontrado.matricular(usuActual);
            //CursosMatriculados= Usuario.Matricular(encontrado);
             
-            CursosDeseo= usuActual1.getListaDeseos();
+//            CursosDeseo= usuActual1.getListaDeseos();
            if( usuActual1.EstaMatriculado(encontrado.getIdcursos())){
         	   this.getServletConfig().getServletContext().getRequestDispatcher("/Mensaje.jsp").forward(request, response);      
            }else{
