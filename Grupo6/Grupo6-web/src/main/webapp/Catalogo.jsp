@@ -81,7 +81,8 @@
     </div>
     
     <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
-
+		 <a href="ServletMisCursos?action=VerMatriculados" > Ver mis cursos matriculados </a></li><br>
+		 <a href="ServletMisCursos?action=VerDeseos" > Ver mi lista de deseos </a></li><br>
 <%
 	List<Curso> Listacursos = (List<Curso>) request.getAttribute("Listacursos");
 	//Iterator<Curso> iterador = null;
@@ -95,20 +96,20 @@
 		Descripcion: <%=curso.getDescripcion() %> <br>
 		
 		El precio inicial es:<%=curso.getPrecio()%><br>
-		El precio final es: <%=curso.getPrecioFinal()%> <br>
+<%-- 		El precio final es: <%=curso.getPrecioFinal()%> <br> --%>
 		<br><br>
 
 		 <img src="ServletImagenes?foto=<%=curso.getImagenuri()%>"> <br><br>
-		 
-		
+
 		 <a href="ServletLecciones?action=mostrar&id=<%=curso.getIdcursos()%>" > Ver sus Lecciones </a></li><br>
 		 <a href="ServletPago?id=<%=curso.getIdcursos()%>" > Matricularse en este curso </a></li> <br>
+		 <a href="ServletMisCursos?action=AniadirDeseo&id=<%=curso.getIdcursos()%>" > Añadir de mi lista de deseos </a></li> <br>
 			<%//if (session.getAttribute("usuario") != null) { 
 			//Usuario log = (Usuario)session.getAttribute("usuario");	
 			//if( log.getRol() != 1 ){ %>
-				<a href="CatalogoLecciones.jsp?id=<%=curso.getIdcursos()%>" > Añadir Leccion </a></li> <br>
-		  		<a href="PersistenceServletCursos?action=modificar&id=<%=curso.getIdcursos()%>" > Modificar Curso </a></li><br>
-		 		<a href="PersistenceServletCursos?action=delete&id=<%=curso.getIdcursos()%>" >Eliminar curso </a></li>	
+		 <a href="CatalogoLecciones.jsp?id=<%=curso.getIdcursos()%>" > Añadir Leccion </a></li> <br>
+		 <a href="PersistenceServletCursos?action=modificar&id=<%=curso.getIdcursos()%>" > Modificar Curso </a></li><br>
+		 <a href="PersistenceServletCursos?action=delete&id=<%=curso.getIdcursos()%>" >Eliminar curso </a></li>	
 			<%//} %>
 		<%//} %>
 			  	

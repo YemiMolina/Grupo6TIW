@@ -117,7 +117,7 @@
 								
 					<br>
 					
-					<a href="PersistenceServletCursos?id=<%=request.getParameter("id")%>">
+					<a href="PersistenceServletCursos">
 					Ir al listado de Cursos </a>
 					
 					

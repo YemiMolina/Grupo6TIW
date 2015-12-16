@@ -93,22 +93,33 @@
 
   <div id="CursosInscritos">
       <p>Cursos en los que estoy MATRICULADO</p>
-      
-      <!-- <ul class="enlacesPerfil">
-        <li><a class="enlacePerfil" href="../src/error.html">Hml5 avanzado</a></li>
-        <li><a class="enlacePerfil" href="../src/error.html">Curso de fotografia</a></li>
-        <li><a class="enlacePerfil" href="../src/error.html">Curso de ingles</a></li>
-        <li><a class="enlacePerfil" href="../src/error.html">Curso de piragua</a></li>
-      
-      </ul> -->
+
        <!--  Añadido para que salgan sus cursos -->
          <ul class="enlacesPerfil">
          
          <% List<Curso> CursosMatriculados = (List<Curso>)request.getAttribute("CursosMatriculados");
          if(CursosMatriculados!=null){
          for( Curso CursosMatriculados1 : CursosMatriculados){ %>
-        <p>Titulo del CURSO:</p>
+        <p>Titulo del Curso:</p>
         <li> <%=CursosMatriculados1.getTitulo() %> </li>
+        <%} }%>
+
+      </ul>
+        
+  </div>
+  
+  
+  <div id="CursosDeseo">
+      <p>Lista de Deseos</p>
+
+       <!--  Añadido para que salgan sus cursos -->
+         <ul class="enlacesPerfil">
+         
+         <% List<Curso> CursosDeseo = (List<Curso>)request.getAttribute("CursosDeseo");
+         if(CursosMatriculados!=null){
+         for( Curso CursosDeseo1 : CursosDeseo){ %>
+        <p>Titulo del CURSO:</p>
+        <li> <%=CursosDeseo1.getTitulo() %> </li>
         <%} }%>
 
       </ul>

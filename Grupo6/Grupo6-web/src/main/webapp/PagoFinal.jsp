@@ -47,7 +47,7 @@
 	<%}else{%>
 	<jsp:include page="Header.jsp"/>
 	<% } %> 
-    
+    <div id="fondoBlanco" style="margin: 5px">
 
 	<%double precio =  (Double)request.getAttribute("precio");%>
     <%double precioFinal= (Double)request.getAttribute("precioFinal");%>
@@ -65,7 +65,7 @@
       
 <!-- Metodo de pago-->
 <input  type="hidden" name="precioFinal" value="<%= precioFinal %>"/> <br>
-Numero de la tarjeta:
+Numero de la tarjeta (A|B+19 numero):
 <input type="text" name="codigoTarjeta" pattern="[A-B][0-9]{19}" /><br>
 <input type="hidden" name="action" value="pagar"/><br>
 <input type="submit" value="Pagar">

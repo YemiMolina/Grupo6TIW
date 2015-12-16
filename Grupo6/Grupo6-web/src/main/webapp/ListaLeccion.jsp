@@ -44,7 +44,7 @@
   <META HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 
-<%-- <jsp:include page="HeaderLog.jsp"/> --%>
+ <jsp:include page="HeaderLog.jsp"/> 
 
 <body id="body">
 

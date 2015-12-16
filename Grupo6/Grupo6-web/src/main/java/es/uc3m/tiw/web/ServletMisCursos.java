@@ -70,51 +70,66 @@ public class ServletMisCursos extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Usuario usuActual1= BuscarUsuario(1);
-        List<Curso> CursosMatriculados = new ArrayList<Curso>();
-
-        
-        CursosMatriculados= usuActual1.getListaCursosAlumno();
-       int tmñ= CursosMatriculados.size();
-        daou.update(usuActual1);
-        request.setAttribute("CursosMatriculados", CursosMatriculados);
+    	HttpSession session = request.getSession();
+        Usuario usuActual= (Usuario)session.getAttribute("usuario");
+    	String action=request.getParameter("action");
     	
-    	//        String id=(String) request.getParameter("id");
-//        int idint= Integer.parseInt(id);
-//        //busca el curso con el id
-//        Curso encontrado= BuscarCurso(idint);
-    	 
-    /*    HttpSession session = request.getSession();
-        Usuario usuActual= (Usuario)session.getAttribute("usuario");*/
-        
-        //Busco en usuario actual
-        /*//iniar la sesion y meto el objeto que quiera
-        request.getSession().setAttribute("usuarioActual", usuActual);
-        //Aqui meto la info del obj usuario y ya puedo acceder a el y obtener lo que quiera
-        Usuario usuActual2= (Usuario) request.getSession().getAttribute("usuarioActual");*/
- 
-       // CursosMatriculados=usuActual.getUsuarioCurso();
-       // encontrado.matricular(usuActual);
-       //CursosMatriculados= Usuario.Matricular(encontrado);
-//        Usuario usuActual1= BuscarUsuario(1);
-//        int id=usuActual1.getIdusuarios();
-//        List<Curso> CursosMatriculados = daoc.BuscarCursoUsuario(id);
-//        CursosMatriculados= usuActual1.getListaCursosAlumno();
-//        CursosMatriculados.add(encontrado);
-       /* try {
-			daou.findAll();
-		} catch (InstantiationException | IllegalAccessException
-				| ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-        
-        request.setAttribute("CursosMatriculados", CursosMatriculados);      
+    	if(action!=null && action.equals("VerMatriculados")){
+    	
+    	Usuario usuActual1= BuscarUsuario(usuActual.getIdusuarios());
+        List<Curso> CursosMatriculados = new ArrayList<Curso>();
+        CursosMatriculados= usuActual1.getListaCursosAlumno();
+        daou.update(usuActual1);
+        request.setAttribute("CursosMatriculados", CursosMatriculados);     
         request.setAttribute("usuario", usuActual1);
-       /* request.setAttribute("apellidos", usuActual.getApellidos());*/
-      //  request.setAttribute("nombre", usuActual1.getNombre());
         this.getServletConfig().getServletContext().getRequestDispatcher("/Perfil.jsp").forward(request, response);
+    	
+    	}else if (action!=null && action.equals("VerDeseos")){
+    		
+        	Usuario usuActual1= BuscarUsuario(usuActual.getIdusuarios());
+            List<Curso> CursosDeseo = new ArrayList<Curso>();
+            CursosDeseo= usuActual1.getListaDeseos();
+            daou.update(usuActual1);
+            request.setAttribute("CursosDeseo", CursosDeseo);     
+            request.setAttribute("usuario", usuActual1);
+            this.getServletConfig().getServletContext().getRequestDispatcher("/Perfil.jsp").forward(request, response);
         	
+    		
+    	}else if(action!=null && action.equals("AniadirDeseo")){
+    		
+    		String id=(String) request.getParameter("id");
+            int idint= Integer.parseInt(id);
+            //busca el curso con el id
+            Curso encontrado= BuscarCurso(idint);
+  
+            //Busco en usuario actual
+            /*//iniar la sesion y meto el objeto que quiera
+            request.getSession().setAttribute("usuarioActual", usuActual);
+            //Aqui meto la info del obj usuario y ya puedo acceder a el y obtener lo que quiera
+            Usuario usuActual2= (Usuario) request.getSession().getAttribute("usuarioActual");*/
+           
+            Usuario usuActual1= BuscarUsuario(usuActual.getIdusuarios());
+            List<Curso> CursosDeseo = new ArrayList<Curso>();
+           
+           // CursosMatriculados=usuActual.getUsuarioCurso();
+           // encontrado.matricular(usuActual);
+           //CursosMatriculados= Usuario.Matricular(encontrado);
+            
+            CursosDeseo= usuActual1.getListaDeseos();
+           if( usuActual1.EstaMatriculado(encontrado.getIdcursos())){
+        	   this.getServletConfig().getServletContext().getRequestDispatcher("/Mensaje.jsp").forward(request, response);      
+           }else{
+            
+        	CursosDeseo.add(encontrado);
+            daou.update(usuActual1);
+            request.setAttribute("CursosDeseo", CursosDeseo);
+            request.setAttribute("Curso", encontrado);
+            request.setAttribute("usuario", usuActual1);
+ 
+            this.getServletConfig().getServletContext().getRequestDispatcher("/Perfil.jsp").forward(request, response);
+           }	
+    		
+    	}	
         
     }
     /**

@@ -79,9 +79,7 @@ public class ServletPago extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	 
-    	
-    	
+
     	String id=(String) request.getParameter("id");
         int idint= Integer.parseInt(id);
         //busca el curso con el id

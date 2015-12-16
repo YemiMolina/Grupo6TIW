@@ -80,8 +80,8 @@
  <br> <br> <br>
     El precio del curso es :
      <%= precio %> <br> <br>
-	El precio final del curso con el descuento es :
-	<%= precioFinal %>
+	<%-- El precio final del curso con el descuento es :
+	<%= precioFinal %> --%>
     <br>
     
     <br><br>
