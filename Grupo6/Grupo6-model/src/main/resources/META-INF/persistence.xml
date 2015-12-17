@@ -9,6 +9,7 @@
 		<class>es.uc3m.tiw.model.Persona</class>
 		<class>es.uc3m.tiw.model.Vale</class>
 		<class>es.uc3m.tiw.model.Pedido</class>
+		<class>es.uc3m.tiw.model.Mensaje</class>
 		<properties>
 		<property name="javax.persistence.schema-generation.database.action" value="update"/>
 		</properties>

@@ -43,7 +43,7 @@ import es.uc3m.tiw.model.daos.UsuarioDAO;
 @TransactionManagement(TransactionManagementType.BEAN)
 public class LectorMensajesMDB implements MessageListener {
 	private IMensajes msgDao;
-	@PersistenceContext(unitName="demo-model")
+	@PersistenceContext(unitName="Grupo6-model")
 	EntityManager em;
 	@Resource
 	UserTransaction ut;
