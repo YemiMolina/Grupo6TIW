@@ -35,10 +35,10 @@
           <artifactId>Grupo6-util</artifactId>
            </jarModule> -->
             <!-- 4.5.2. Include EJB Module. -->
-            <!-- <ejbModule>
+           <ejbModule>
           <groupId>es.uc3m.tiw.ejb</groupId>
             <artifactId>Grupo6-ejb</artifactId>
-            </ejbModule> -->
+            </ejbModule> 
             <jarModule>
              <groupId>es.uc3m.tiw.model</groupId>
             <artifactId>Grupo6-model</artifactId>
@@ -67,23 +67,23 @@
   		<artifactId>Grupo6-util</artifactId>
   		<version>1.0</version>
   		<type>jar</type>
-  	</dependency>
-  	<dependency>
-  		<groupId>es.uc3m.tiw.ejb</groupId>
-  		<artifactId>Grupo6-ejb</artifactId>
-  		<version>1.0</version>
-  		<type>ejb</type>
-  	</dependency> -->
+  	</dependency>--> 
   	<dependency>
   		<groupId>es.uc3m.tiw.web</groupId>
   		<artifactId>Grupo6-web</artifactId>
-  		<version>1.0</version>
+  		<version>${project.parent.version}</version>
   		<type>war</type>
   	</dependency>
   	<dependency>
   		<groupId>es.uc3m.tiw.model</groupId>
   		<artifactId>Grupo6-model</artifactId>
-  		<version>1.0</version>
+  		<version>${project.parent.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>es.uc3m.tiw.ejb</groupId>
+  		<artifactId>Grupo6-ejb</artifactId>
+  		<version>${project.parent.version}</version>
+  		<type>ejb</type>
   	</dependency>
   </dependencies>
 </project>

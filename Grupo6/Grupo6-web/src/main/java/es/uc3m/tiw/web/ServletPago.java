@@ -187,12 +187,7 @@ public class ServletPago extends HttpServlet {
 	public Usuario BuscarUsuario(int id) {
 		// int IdCurso2=0;
 		Usuario UsuarioEncontrado = null;
-		try {
-			UsuarioEncontrado = daou.findById(id);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		UsuarioEncontrado = daou.findById(id);
 		return UsuarioEncontrado;
 	}
 

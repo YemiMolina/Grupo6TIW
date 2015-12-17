@@ -173,7 +173,7 @@ public class ServletRegistroUsuario extends HttpServlet {
 			e.printStackTrace();
 		}//añadir usuario a la lista de usuarios
 		
-		
+
 		request.setAttribute("usuario", us1);		
 		//request.setAttribute("listaUsuarios", listaUsuarios);
 		

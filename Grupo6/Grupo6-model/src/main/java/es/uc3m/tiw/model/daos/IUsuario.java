@@ -25,7 +25,7 @@ public interface IUsuario {
 	public abstract List<Usuario> findAll() throws InstantiationException,
 			IllegalAccessException, ClassNotFoundException, SQLException;
 
-	public abstract Usuario findById(int id) throws SQLException;
+	public abstract Usuario findById(int id) ;
 
 	public abstract void removeUsuario(Usuario usuario)
 			throws NotSupportedException, SystemException,

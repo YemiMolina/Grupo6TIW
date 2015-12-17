@@ -20,12 +20,7 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-          
-            <scope>provided</scope>
-        </dependency>
+
         <dependency>
         	<groupId>es.uc3m.tiw.model</groupId>
         	<artifactId>Grupo6-model</artifactId>
@@ -35,14 +30,20 @@
         <dependency>
         	<groupId>es.uc3m.tiw.ejb</groupId>
         	<artifactId>Grupo6-ejb</artifactId>
-        	<version>1.0</version>
+        	<version>${project.parent.version}</version>
         	<type>ejb</type>
+        	<scope>provided</scope>
+        </dependency>
+        <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
         </dependency>
          <dependency>
         	<groupId>com.sun.jersey</groupId>
         	<artifactId>jersey-client</artifactId>
         	<version>1.19</version>
         </dependency>
+        
     </dependencies>
 
     <build>

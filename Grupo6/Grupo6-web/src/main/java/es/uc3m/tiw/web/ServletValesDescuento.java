@@ -142,13 +142,8 @@ public class ServletValesDescuento extends HttpServlet {
      }
 
      public Usuario BuscarProfesor(int id){
-     	try {
- 			return daou.findById(id);
- 		} catch (SQLException e) {
- 			// TODO Auto-generated catch block
- 			e.printStackTrace();
- 		}
-     	return null;
+     	return daou.findById(id);
+     	
      	
      }
      public String generacodigo(Vale vale){

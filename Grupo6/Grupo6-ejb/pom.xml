@@ -35,7 +35,7 @@
         <dependency>
         	<groupId>es.uc3m.tiw.model</groupId>
         	<artifactId>Grupo6-model</artifactId>
-        	<version>1.0</version>
+        	<version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 
